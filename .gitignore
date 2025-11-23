@@ -3,3 +3,6 @@ composer.lock
 .DS_Store
 .idea/
 .vscode/
+.claude/skills/skill-creator/scripts/__pycache__/
+*.pyc
+__pycache__/
