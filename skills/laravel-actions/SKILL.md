@@ -16,13 +16,6 @@ Action-oriented architecture: domain logic lives in invokable classes, not contr
 - Composition techniques
 - When to create actions
 
-**[philosophy.md](references/philosophy.md)** - Foundational principles:
-- Actions contain domain logic
-- DTOs for data transfer
-- Strict typing
-- Thin HTTP layer
-- Composability
-
 ## Pattern
 
 ```php

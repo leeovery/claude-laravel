@@ -9,6 +9,12 @@ High-level architectural guidance for Laravel applications.
 
 ## Core Concepts
 
+**[philosophy.md](references/philosophy.md)** - Foundational principles:
+- Declarative code above all else
+- Strict separation of concerns
+- Type safety first
+- All core architectural principles
+
 **[patterns.md](references/patterns.md)** - Pattern overview:
 - Actions for domain logic
 - DTOs for data transfer
