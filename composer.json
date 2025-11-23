@@ -1,0 +1,23 @@
+{
+    "name": "leeovery/claude-laravel",
+    "description": "Laravel architecture skills and commands for Claude Code",
+    "type": "claude-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lee Overy",
+            "email": "me@leeovery.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "leeovery/claude-manager": "^1.0"
+    },
+    "extra": {
+        "claude-plugin": {
+            "skills": [
+                "skills/laravel-architecture"
+            ]
+        }
+    }
+}
