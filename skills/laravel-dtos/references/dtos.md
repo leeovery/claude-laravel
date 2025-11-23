@@ -3,13 +3,13 @@
 **Never pass multiple primitive values.** Always wrap data in Data objects.
 
 **Related guides:**
-- [actions.md](actions.md) - Actions accept DTOs as parameters
-- [controllers.md](controllers.md) - Controllers transform requests to DTOs
-- [form-requests.md](form-requests.md) - Validation before transformation
+- [actions.md](../../laravel-actions/references/actions.md) - Actions accept DTOs as parameters
+- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers transform requests to DTOs
+- [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation before transformation
 - [dto-factories.md](dto-factories.md) - **Transform external system data to DTOs**
-- [models.md](models.md) - Casting model attributes to DTOs
-- [testing.md](testing.md) - Using DTO test factories in tests, avoiding hardcoded data
-- [package-extraction.md](package-extraction.md) - Creating DTO base classes for packages
+- [models.md](../../laravel-models/references/models.md) - Casting model attributes to DTOs
+- [testing.md](../../laravel-testing/references/testing.md) - Using DTO test factories in tests, avoiding hardcoded data
+- [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Creating DTO base classes for packages
 
 ## Philosophy
 
@@ -170,7 +170,7 @@ $data = CreateOrderData::testFactory()->make();
 $collection = OrderItemData::testFactory()->collect(count: 5);
 ```
 
-**For comprehensive guidance on using DTO test factories in your tests**, see [testing.md](testing.md) - includes how to avoid hardcoded test data and use factories for more reliable tests.
+**For comprehensive guidance on using DTO test factories in your tests**, see [testing.md](../../laravel-testing/references/testing.md) - includes how to avoid hardcoded test data and use factories for more reliable tests.
 
 ### 7. Model Casts
 

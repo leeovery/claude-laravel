@@ -3,7 +3,7 @@
 Custom exceptions use **static factory methods** and implement `HttpExceptionInterface`.
 
 **Related guides:**
-- [actions.md](actions.md) - Throwing exceptions in actions
+- [actions.md](../../laravel-actions/references/actions.md) - Throwing exceptions in actions
 
 ## Structure
 

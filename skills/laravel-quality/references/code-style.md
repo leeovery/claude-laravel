@@ -5,7 +5,7 @@ Consistent code style through Laravel Pint and declarative coding practices.
 **Related guides:**
 - [type-safety.md](type-safety.md) - Type declarations
 - [quality.md](quality.md) - Pint configuration and testing
-- [package-extraction.md](package-extraction.md) - Code style for packages
+- [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Code style for packages
 
 ## Declarative Code Philosophy
 

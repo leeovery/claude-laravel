@@ -3,14 +3,14 @@
 Actions are the **heart of your domain logic**. Every business operation lives in an action.
 
 **Related guides:**
-- [dtos.md](dtos.md) - DTOs for passing data to actions
-- [dto-factories.md](dto-factories.md) - Factory-created DTOs consumed by actions
-- [controllers.md](controllers.md) - Controllers delegate to actions
-- [models.md](models.md) - Models accessed by actions
-- [testing.md](testing.md) - Comprehensive testing guide following triple-A pattern, mocking only what you own
-- [testing-conventions.md](testing-conventions.md) - Test structure and ordering
-- [multi-tenancy.md](multi-tenancy.md) - Central vs Tenanted action organization
-- [package-extraction.md](package-extraction.md) - Creating action base classes for packages
+- [dtos.md](../../laravel-dtos/references/dtos.md) - DTOs for passing data to actions
+- [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Factory-created DTOs consumed by actions
+- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers delegate to actions
+- [models.md](../../laravel-models/references/models.md) - Models accessed by actions
+- [testing.md](../../laravel-testing/references/testing.md) - Comprehensive testing guide following triple-A pattern, mocking only what you own
+- [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test structure and ordering
+- [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Central vs Tenanted action organization
+- [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Creating action base classes for packages
 
 ## Philosophy
 
@@ -378,7 +378,7 @@ it('throws exception when user has too many pending orders', function () {
 - Using factories for realistic test data
 - Avoiding brittle tests
 
-**See [testing.md](testing.md) for the complete testing guide.**
+**See [testing.md](../../laravel-testing/references/testing.md) for the complete testing guide.**
 
 ## Common Patterns
 
@@ -492,4 +492,4 @@ app/Actions/
     └── UpdateUserAction.php
 ```
 
-**See [multi-tenancy.md](multi-tenancy.md) for comprehensive multi-tenancy patterns**, including tenant context helpers, route configuration, database isolation, and queue integration.
+**See [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) for comprehensive multi-tenancy patterns**, including tenant context helpers, route configuration, database isolation, and queue integration.

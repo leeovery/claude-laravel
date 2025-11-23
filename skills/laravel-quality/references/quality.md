@@ -3,13 +3,13 @@
 Testing, static analysis, and code quality enforcement.
 
 **Related guides:**
-- [packages.md](packages.md) - Installing Pest and quality tools
-- [testing.md](testing.md) - Comprehensive testing guide with triple-A pattern, mocking philosophy, and test organization
-- [testing-conventions.md](testing-conventions.md) - Test file structure and RESTful ordering
-- [validation-testing.md](validation-testing.md) - Comprehensive validation testing with datasets
-- [examples.md](examples.md) - Testing examples
-- [checklist.md](checklist.md) - Quality checks in implementation workflow
-- [package-extraction.md](package-extraction.md) - Testing standards for packages
+- [packages.md](../../laravel-packages/references/packages.md) - Installing Pest and quality tools
+- [testing.md](../../laravel-testing/references/testing.md) - Comprehensive testing guide with triple-A pattern, mocking philosophy, and test organization
+- [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure and RESTful ordering
+- [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Comprehensive validation testing with datasets
+- [examples.md](../../laravel-architecture/references/examples.md) - Testing examples
+- [checklist.md](../../laravel-architecture/references/checklist.md) - Quality checks in implementation workflow
+- [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Testing standards for packages
 
 ## Architecture Tests (Pest)
 

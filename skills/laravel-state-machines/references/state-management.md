@@ -3,9 +3,9 @@
 Use **Spatie Model States** for complex state management with type-safe transitions.
 
 **Related guides:**
-- [models.md](models.md) - Model integration
-- [enums.md](enums.md) - Simple state without transitions use enums
-- [packages.md](packages.md) - Installing Spatie Model States
+- [models.md](../../laravel-models/references/models.md) - Model integration
+- [enums.md](../../laravel-enums/references/enums.md) - Simple state without transitions use enums
+- [packages.md](../../laravel-packages/references/packages.md) - Installing Spatie Model States
 
 ## When to Use State Machines
 
@@ -21,7 +21,7 @@ Use **Spatie Model States** for complex state management with type-safe transiti
 - No transition logic
 - No side effects
 
-See [enums.md](enums.md) for simple state management.
+See [enums.md](../../laravel-enums/references/enums.md) for simple state management.
 
 ## State Class Hierarchy
 
@@ -264,4 +264,4 @@ app/States/
 - State-specific behavior
 - Clear state transition rules
 
-**Use for complex states.** For simple statuses, use [enums.md](enums.md).
+**Use for complex states.** For simple statuses, use [enums.md](../../laravel-enums/references/enums.md).

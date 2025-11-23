@@ -404,5 +404,5 @@ it('throws 404 for soft-deleted order on public routes', function () {
 - Replace proper eager loading strategies
 
 **See also:**
-- [service-providers.md](service-providers.md) - AppServiceProvider setup
-- [controllers.md](controllers.md) - Using bound models in controllers
+- [service-providers.md](../../laravel-providers/references/service-providers.md) - AppServiceProvider setup
+- [controllers.md](../../laravel-controllers/references/controllers.md) - Using bound models in controllers

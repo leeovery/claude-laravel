@@ -3,9 +3,9 @@
 Essential packages used in the Laravel architecture.
 
 **Related guides:**
-- [dtos.md](dtos.md) - Using Spatie Laravel Data
-- [models.md](models.md) - Using Spatie Model States and Query Builder
-- [quality.md](quality.md) - Using Pest for testing
+- [dtos.md](../../laravel-dtos/references/dtos.md) - Using Spatie Laravel Data
+- [models.md](../../laravel-models/references/models.md) - Using Spatie Model States and Query Builder
+- [quality.md](../../laravel-quality/references/quality.md) - Using Pest for testing
 
 ## Core Packages (Always)
 

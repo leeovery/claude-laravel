@@ -3,8 +3,8 @@
 Policies encapsulate authorization logic and delegate to permission systems.
 
 **Related guides:**
-- [routing-permissions.md](routing-permissions.md) - Route-level authorization
-- [enums.md](enums.md) - Permission enums
+- [routing-permissions.md](../../laravel-routing/references/routing-permissions.md) - Route-level authorization
+- [enums.md](../../laravel-enums/references/enums.md) - Permission enums
 
 ## Structure
 
@@ -146,7 +146,7 @@ Route::post('/orders', [OrderController::class, 'store'])
     ->can('create', Order::class);
 ```
 
-See [routing-permissions.md](routing-permissions.md) for route authorization.
+See [routing-permissions.md](../../laravel-routing/references/routing-permissions.md) for route authorization.
 
 ## Summary
 

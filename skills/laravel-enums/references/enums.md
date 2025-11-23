@@ -3,10 +3,10 @@
 Enums provide type-safe, finite sets of values.
 
 **Related guides:**
-- [state-management.md](state-management.md) - For complex state transitions
-- [models.md](models.md) - Model casts to enums
-- [dtos.md](dtos.md) - DTOs with enum properties
-- [form-requests.md](form-requests.md) - Enum validation
+- [state-management.md](../../laravel-state-machines/references/state-management.md) - For complex state transitions
+- [models.md](../../laravel-models/references/models.md) - Model casts to enums
+- [dtos.md](../../laravel-dtos/references/dtos.md) - DTOs with enum properties
+- [form-requests.md](../../laravel-validation/references/form-requests.md) - Enum validation
 
 ## Always Use Backed Enums
 
@@ -267,7 +267,7 @@ public function __construct(public Order $order)
 }
 ```
 
-See [jobs-listeners.md](jobs-listeners.md) for queue patterns.
+See [jobs-listeners.md](../../laravel-jobs/references/jobs-listeners.md) for queue patterns.
 
 ## Directory Structure
 
@@ -296,7 +296,7 @@ app/Enums/
 - State-specific behavior
 - Transition side effects
 
-See [state-management.md](state-management.md) for state machines.
+See [state-management.md](../../laravel-state-machines/references/state-management.md) for state machines.
 
 ## Summary
 

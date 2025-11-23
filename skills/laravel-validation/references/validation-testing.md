@@ -3,10 +3,10 @@
 **Comprehensive guide to testing form request validation** using the RequestDataProviderItem helper and Pest datasets for systematic validation coverage.
 
 **Related guides:**
-- [testing-conventions.md](testing-conventions.md) - Test file structure and ordering conventions
+- [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure and ordering conventions
 - [form-requests.md](form-requests.md) - Form request validation rules
-- [quality.md](quality.md) - Testing standards and architecture tests
-- [testing.md](testing.md) - Complete testing guide
+- [quality.md](../../laravel-quality/references/quality.md) - Testing standards and architecture tests
+- [testing.md](../../laravel-testing/references/testing.md) - Complete testing guide
 
 ## Philosophy
 

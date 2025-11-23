@@ -3,10 +3,10 @@
 Multi-tenancy separates application logic into **central** (non-tenant) and **tenanted** (tenant-specific) contexts. This provides clear boundaries for what operates across all tenants vs. within a specific tenant.
 
 **Related guides:**
-- [actions.md](actions.md) - Central vs Tenanted action organization
-- [models.md](models.md) - Central vs Tenanted model organization
-- [structure.md](structure.md) - Directory organization for multi-tenancy
-- [route-binding.md](route-binding.md) - Tenant-scoped route model binding
+- [actions.md](../../laravel-actions/references/actions.md) - Central vs Tenanted action organization
+- [models.md](../../laravel-models/references/models.md) - Central vs Tenanted model organization
+- [structure.md](../../laravel-architecture/references/structure.md) - Directory organization for multi-tenancy
+- [route-binding.md](../../laravel-routing/references/route-binding.md) - Tenant-scoped route model binding
 
 ## Philosophy
 
@@ -844,7 +844,7 @@ if (TenantContext::isActive()) {
 - Use appropriate middleware for tenant identification
 
 **See also:**
-- [actions.md](actions.md) - Action organization patterns
-- [models.md](models.md) - Model organization
-- [structure.md](structure.md) - Project structure
-- [route-binding.md](route-binding.md) - Route model binding with tenant scoping
+- [actions.md](../../laravel-actions/references/actions.md) - Action organization patterns
+- [models.md](../../laravel-models/references/models.md) - Model organization
+- [structure.md](../../laravel-architecture/references/structure.md) - Project structure
+- [route-binding.md](../../laravel-routing/references/route-binding.md) - Route model binding with tenant scoping

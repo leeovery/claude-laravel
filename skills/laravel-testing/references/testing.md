@@ -4,13 +4,13 @@ Comprehensive guide to testing Laravel applications following the action-oriente
 
 **Related guides:**
 - [testing-conventions.md](testing-conventions.md) - Test file structure and RESTful ordering
-- [validation-testing.md](validation-testing.md) - Form request validation testing with datasets
-- [actions.md](actions.md) - Action pattern and structure
-- [controllers.md](controllers.md) - Controller patterns for feature testing HTTP layer
-- [dto-factories.md](dto-factories.md) - Testing factory transformation logic
-- [services.md](services.md) - Service layer with null drivers for testing
-- [quality.md](quality.md) - Architecture tests and quality enforcement
-- [dtos.md](dtos.md) - DTO test factories
+- [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Form request validation testing with datasets
+- [actions.md](../../laravel-actions/references/actions.md) - Action pattern and structure
+- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller patterns for feature testing HTTP layer
+- [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Testing factory transformation logic
+- [services.md](../../laravel-services/references/services.md) - Service layer with null drivers for testing
+- [quality.md](../../laravel-quality/references/quality.md) - Architecture tests and quality enforcement
+- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO test factories
 
 ## Philosophy
 
@@ -290,7 +290,7 @@ If you find yourself needing to mock an external service, **create an abstractio
 4. **Create a Null Driver** for testing
 5. **Add a Facade** for convenience
 
-**See [services.md](services.md) for complete implementation examples.**
+**See [services.md](../../laravel-services/references/services.md) for complete implementation examples.**
 
 ### Using Null Drivers
 
@@ -414,7 +414,7 @@ it('creates an order', function () {
 });
 ```
 
-**See [dtos.md](dtos.md) for more on DTO test factories.**
+**See [dtos.md](../../laravel-dtos/references/dtos.md) for more on DTO test factories.**
 
 ### Declarative Factory Methods
 
@@ -964,7 +964,7 @@ it('handles payment failure gracefully', function () {
 });
 ```
 
-**See [services.md](services.md) for complete service layer implementation.**
+**See [services.md](../../laravel-services/references/services.md) for complete service layer implementation.**
 
 ## Testing Strategy
 
@@ -1039,7 +1039,7 @@ test(
 )->with('order create validation');
 ```
 
-**See [validation-testing.md](validation-testing.md) for comprehensive validation testing guide.**
+**See [validation-testing.md](../../laravel-validation/references/validation-testing.md) for comprehensive validation testing guide.**
 
 ### Integration Tests (External Services)
 
@@ -1271,11 +1271,11 @@ assertDatabaseCount('orders', 1);
 
 ## Related Testing Documentation
 
-- **[validation-testing.md](validation-testing.md)** - Comprehensive form request validation testing with RequestDataProviderItem and datasets
-- **[quality.md](quality.md)** - Architecture tests, PHPStan, Pint, CI/CD quality checks
-- **[services.md](services.md)** - Service layer pattern with null drivers for testing external APIs
-- **[actions.md](actions.md)** - Action pattern structure and basic testing examples
-- **[dtos.md](dtos.md)** - DTO structure and test factory implementation
+- **[validation-testing.md](../../laravel-validation/references/validation-testing.md)** - Comprehensive form request validation testing with RequestDataProviderItem and datasets
+- **[quality.md](../../laravel-quality/references/quality.md)** - Architecture tests, PHPStan, Pint, CI/CD quality checks
+- **[services.md](../../laravel-services/references/services.md)** - Service layer pattern with null drivers for testing external APIs
+- **[actions.md](../../laravel-actions/references/actions.md)** - Action pattern structure and basic testing examples
+- **[dtos.md](../../laravel-dtos/references/dtos.md)** - DTO structure and test factory implementation
 
 ---
 

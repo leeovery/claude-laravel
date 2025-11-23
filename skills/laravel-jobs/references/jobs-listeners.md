@@ -3,10 +3,10 @@
 Jobs and Listeners are **thin delegation layers** with zero domain logic.
 
 **Related guides:**
-- [actions.md](actions.md) - Actions contain the work
-- [dto-factories.md](dto-factories.md) - Factories transform event/job data to DTOs
-- [enums.md](enums.md) - Queue enums
-- [testing.md](testing.md) - Testing jobs and listeners (faking queues, testing delegation)
+- [actions.md](../../laravel-actions/references/actions.md) - Actions contain the work
+- [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Factories transform event/job data to DTOs
+- [enums.md](../../laravel-enums/references/enums.md) - Queue enums
+- [testing.md](../../laravel-testing/references/testing.md) - Testing jobs and listeners (faking queues, testing delegation)
 
 ## Philosophy
 
@@ -216,7 +216,7 @@ enum Queue: string
 $this->onQueue(Queue::Emails->value);
 ```
 
-See [enums.md](enums.md) for more on enum patterns.
+See [enums.md](../../laravel-enums/references/enums.md) for more on enum patterns.
 
 ## Listener Structure
 
@@ -293,4 +293,4 @@ OrderCreated::class => [
 - **Never contain domain logic**
 - Always delegate to actions
 
-See [actions.md](actions.md) for where domain logic belongs.
+See [actions.md](../../laravel-actions/references/actions.md) for where domain logic belongs.

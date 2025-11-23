@@ -3,10 +3,10 @@
 Extract **reusable patterns** into packages when they provide value across multiple projects. This guide covers when to extract, how to structure packages, and best practices for maintaining them.
 
 **Related guides:**
-- [actions.md](actions.md) - Action pattern for package base classes
-- [dtos.md](dtos.md) - DTO patterns for package data structures
-- [service-providers.md](service-providers.md) - Service provider structure for packages
-- [code-style.md](code-style.md) - Code style for package consistency
+- [actions.md](../../laravel-actions/references/actions.md) - Action pattern for package base classes
+- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO patterns for package data structures
+- [service-providers.md](../../laravel-providers/references/service-providers.md) - Service provider structure for packages
+- [code-style.md](../../laravel-quality/references/code-style.md) - Code style for package consistency
 
 ## Philosophy
 
@@ -556,7 +556,7 @@ Follow [SemVer](https://semver.org/) strictly:
 - Skip proper documentation and testing
 
 **See also:**
-- [actions.md](actions.md) - Action pattern for base classes
-- [service-providers.md](service-providers.md) - Service provider structure
-- [code-style.md](code-style.md) - Code style guidelines
-- [quality.md](quality.md) - Testing and quality standards
+- [actions.md](../../laravel-actions/references/actions.md) - Action pattern for base classes
+- [service-providers.md](../../laravel-providers/references/service-providers.md) - Service provider structure
+- [code-style.md](../../laravel-quality/references/code-style.md) - Code style guidelines
+- [quality.md](../../laravel-quality/references/quality.md) - Testing and quality standards

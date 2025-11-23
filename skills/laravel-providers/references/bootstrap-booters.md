@@ -3,8 +3,8 @@
 Application bootstrapping uses **invokable booter classes** instead of service providers.
 
 **Related guides:**
-- [routing-permissions.md](routing-permissions.md) - Route configuration
-- [structure.md](structure.md) - Project organization
+- [routing-permissions.md](../../laravel-routing/references/routing-permissions.md) - Route configuration
+- [structure.md](../../laravel-architecture/references/structure.md) - Project organization
 
 ## Philosophy
 

@@ -19,7 +19,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Verb}{Entity}Action`
 
-**See [actions.md](actions.md) for complete guide**
+**See [actions.md](../../laravel-actions/references/actions.md) for complete guide**
 
 ### Data Transfer Objects
 - Extend base `Data` class (Spatie)
@@ -32,7 +32,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Entity}Data` or `{Action}{Entity}Data`
 
-**See [dtos.md](dtos.md) for complete guide**
+**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete guide**
 
 ### Strict Typing
 - Every file starts with `declare(strict_types=1)`
@@ -48,10 +48,10 @@ Overview of all architectural patterns used in the Laravel architecture.
 - Resources format responses
 - Queries handle complex filtering/sorting
 
-**Controllers:** HTTP only - See [controllers.md](controllers.md)
+**Controllers:** HTTP only - See [controllers.md](../../laravel-controllers/references/controllers.md)
 **Jobs/Listeners:** Delegate to actions
-**Actions:** Domain logic - See [actions.md](actions.md)
-**Validation:** Form Requests - See [form-requests.md](form-requests.md)
+**Actions:** Domain logic - See [actions.md](../../laravel-actions/references/actions.md)
+**Validation:** Form Requests - See [form-requests.md](../../laravel-validation/references/form-requests.md)
 
 ### Custom Query Builders
 - Better type hints than scopes
@@ -63,7 +63,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Entity}Builder`
 
-**See [models.md](models.md) for custom builder implementation**
+**See [models.md](../../laravel-models/references/models.md) for custom builder implementation**
 
 ## Optional Patterns
 

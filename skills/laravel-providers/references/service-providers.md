@@ -3,8 +3,8 @@
 Service providers are the central place for application bootstrapping and configuration.
 
 **Related guides:**
-- [route-binding.md](route-binding.md) - Route model binding configuration
-- [package-extraction.md](package-extraction.md) - Creating service providers for packages
+- [route-binding.md](../../laravel-routing/references/route-binding.md) - Route model binding configuration
+- [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Creating service providers for packages
 
 ## Philosophy
 
@@ -111,7 +111,7 @@ database/
     └── OrderFactory.php
 ```
 
-**See [dtos.md](dtos.md) for complete factory examples.**
+**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete factory examples.**
 
 ## Route Model Bindings
 
@@ -168,7 +168,7 @@ private function bootRouteModelBindings(): void
 }
 ```
 
-**See [route-binding.md](route-binding.md) for:**
+**See [route-binding.md](../../laravel-routing/references/route-binding.md) for:**
 - Complete ConditionalRouteBinder class implementation
 - Multiple usage examples (admin routes, eager loading, multi-tenancy)
 - Query object integration
@@ -529,5 +529,5 @@ private function configure(): void { }
 - Be overly complex (split into multiple providers if needed)
 
 **See also:**
-- [models.md](models.md) - Model unguard pattern
-- [dtos.md](dtos.md) - Data factory setup
+- [models.md](../../laravel-models/references/models.md) - Model unguard pattern
+- [dtos.md](../../laravel-dtos/references/dtos.md) - Data factory setup

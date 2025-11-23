@@ -4,10 +4,10 @@
 
 **Related guides:**
 - [dtos.md](dtos.md) - Core DTO patterns and structure
-- [actions.md](actions.md) - Actions consume factory-created DTOs
-- [services.md](services.md) - Service layer integration points for factories
-- [testing.md](testing.md) - Testing factory transformation logic
-- [models.md](models.md) - Model factory vs DTO factory distinction
+- [actions.md](../../laravel-actions/references/actions.md) - Actions consume factory-created DTOs
+- [services.md](../../laravel-services/references/services.md) - Service layer integration points for factories
+- [testing.md](../../laravel-testing/references/testing.md) - Testing factory transformation logic
+- [models.md](../../laravel-models/references/models.md) - Model factory vs DTO factory distinction
 
 ## Infrastructure Files
 
@@ -587,7 +587,7 @@ class MatchSuggestionDataFactory
 
 ## Testing Factory Transformations
 
-**[→ See testing.md for comprehensive testing guide](testing.md)**
+**[→ See testing.md for comprehensive testing guide](../../laravel-testing/references/testing.md)**
 
 ### Snapshot Testing
 

@@ -3,10 +3,10 @@
 Routes define the HTTP interface. Authorization happens at the route level using `->can()`.
 
 **Related guides:**
-- [controllers.md](controllers.md) - Controllers handle routes
-- [policies.md](policies.md) - Policies define authorization logic
-- [structure.md](structure.md) - Web vs API routing structure
-- [bootstrap-booters.md](bootstrap-booters.md) - Route configuration in bootstrap
+- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers handle routes
+- [policies.md](../../laravel-policies/references/policies.md) - Policies define authorization logic
+- [structure.md](../../laravel-architecture/references/structure.md) - Web vs API routing structure
+- [bootstrap-booters.md](../../laravel-providers/references/bootstrap-booters.md) - Route configuration in bootstrap
 
 ## Why Route-Level Authorization
 
@@ -148,7 +148,7 @@ Route::prefix('v1')->name('api.v1.')->group(base_path('routes/api/v1.php'));
 Route::prefix('v2')->name('api.v2.')->group(base_path('routes/api/v2.php'));
 ```
 
-See [bootstrap-booters.md](bootstrap-booters.md) for bootstrap configuration.
+See [bootstrap-booters.md](../../laravel-providers/references/bootstrap-booters.md) for bootstrap configuration.
 
 ## Web vs API Differences
 
@@ -173,4 +173,4 @@ See [bootstrap-booters.md](bootstrap-booters.md) for bootstrap configuration.
 - Named routes always
 - Custom binding keys when needed
 
-See [policies.md](policies.md) for authorization logic.
+See [policies.md](../../laravel-policies/references/policies.md) for authorization logic.

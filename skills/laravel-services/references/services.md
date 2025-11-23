@@ -3,10 +3,10 @@
 External services use Laravel's **Manager pattern** with multiple drivers.
 
 **Related guides:**
-- [actions.md](actions.md) - Actions use services
-- [dto-factories.md](dto-factories.md) - Factories transform service responses to DTOs
-- [packages.md](packages.md) - Saloon for HTTP clients
-- [testing.md](testing.md) - Testing with null drivers, avoiding mocking external services
+- [actions.md](../../laravel-actions/references/actions.md) - Actions use services
+- [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Factories transform service responses to DTOs
+- [packages.md](../../laravel-packages/references/packages.md) - Saloon for HTTP clients
+- [testing.md](../../laravel-testing/references/testing.md) - Testing with null drivers, avoiding mocking external services
 
 ## When to Use
 
