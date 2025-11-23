@@ -6,3 +6,4 @@ composer.lock
 .claude/skills/skill-creator/scripts/__pycache__/
 *.pyc
 __pycache__/
+dist/
