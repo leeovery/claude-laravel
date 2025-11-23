@@ -13,13 +13,6 @@
         "php": "^8.2",
         "leeovery/claude-manager": "^1.0"
     },
-    "extra": {
-        "claude-plugin": {
-            "skills": [
-                "skills/laravel-architecture"
-            ]
-        }
-    },
     "config": {
         "allow-plugins": {
             "leeovery/claude-manager": true
