@@ -673,7 +673,7 @@ This trait provides tenant management functionality for tests, including:
 - Parallel testing support
 - Tenant initialization helpers
 
-**[View full implementation →](./multi-tenancy/testing/ManagesTenants.php)**
+**[View full implementation →](./testing/ManagesTenants.php)**
 
 #### RefreshDatabaseWithTenant Trait
 
@@ -681,7 +681,7 @@ This trait provides tenant management functionality for tests, including:
 
 This trait extends Laravel's RefreshDatabase trait to handle both central and tenant databases in transactions.
 
-**[View full implementation →](./multi-tenancy/testing/RefreshDatabaseWithTenant.php)**
+**[View full implementation →](./testing/RefreshDatabaseWithTenant.php)**
 
 #### TenantTestCase
 
@@ -689,7 +689,7 @@ This trait extends Laravel's RefreshDatabase trait to handle both central and te
 
 Base test case for all tenant-scoped tests.
 
-**[View full implementation →](./multi-tenancy/testing/TenantTestCase.php)**
+**[View full implementation →](./testing/TenantTestCase.php)**
 
 #### Enhanced TestCase
 
@@ -697,7 +697,7 @@ Base test case for all tenant-scoped tests.
 
 Base test case with multi-tenancy support.
 
-**[View full implementation →](./multi-tenancy/testing/TestCase.php)**
+**[View full implementation →](./testing/TestCase.php)**
 
 #### Pest Configuration for Multi-Tenancy
 
@@ -705,7 +705,7 @@ Base test case with multi-tenancy support.
 
 Configure Pest to automatically use the correct test case based on directory structure.
 
-**[View full implementation →](./multi-tenancy/testing/Pest.php)**
+**[View full implementation →](./testing/Pest.php)**
 
 ### Test Directory Structure
 
