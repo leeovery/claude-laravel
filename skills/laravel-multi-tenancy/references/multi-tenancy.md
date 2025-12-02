@@ -72,23 +72,21 @@ app/
 │           ├── Controllers/
 │           ├── Requests/
 │           └── Resources/
-├── Models/
-│   ├── Central/          # Central database models
-│   │   ├── Tenant.php
-│   │   └── User.php
-│   └── Tenanted/         # Tenant database models
-│       ├── Order.php
-│       ├── Customer.php
-│       └── Product.php
+├── Models/               # All models in standard Laravel location
+│   ├── Tenant.php        # Central model (implements CentralModel)
+│   ├── User.php          # Can be central or tenanted
+│   ├── Order.php         # Tenanted model (uses BelongsToTenant trait)
+│   ├── Customer.php
+│   └── Product.php
 └── Support/
     └── TenantContext.php # Tenant context helper
 ```
 
 ### Key Principles
 
-1. **Central vs Tenanted**: Explicit separation via directory structure
+1. **Central vs Tenanted**: Explicit separation via directory structure for actions/DTOs
 2. **Namespace Clarity**: `App\Actions\Central\` vs `App\Actions\Tenanted\`
-3. **Model Distinction**: `App\Models\Central\` vs `App\Models\Tenanted\`
+3. **Model Distinction**: Use traits/interfaces (not subdirectories) to distinguish model types
 4. **Database Separation**: Each tenant has dedicated database
 5. **Context Helpers**: Centralized tenant context access
 
@@ -106,7 +104,7 @@ declare(strict_types=1);
 namespace App\Actions\Central\Tenant;
 
 use App\Data\Central\CreateTenantData;
-use App\Models\Central\Tenant;
+use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
 
 class CreateTenantAction
@@ -156,7 +154,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Central\Tenant;
 
-use App\Models\Central\Tenant;
+use App\Models\Tenant;
 use Stancl\Tenancy\Database\TenantDatabaseManagers\PermissionControlledDatabaseManager;
 
 class CreateTenantDatabaseAction
@@ -185,7 +183,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Central\Tenant;
 
-use App\Models\Central\Tenant;
+use App\Models\Tenant;
 use Illuminate\Support\Facades\DB;
 use Stancl\Tenancy\Database\TenantDatabaseManagers\PermissionControlledDatabaseManager;
 
@@ -220,8 +218,8 @@ declare(strict_types=1);
 namespace App\Actions\Tenanted\Order;
 
 use App\Data\Tenanted\CreateOrderData;
-use App\Models\Tenanted\Order;
-use App\Models\Tenanted\User;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class CreateOrderAction
@@ -283,7 +281,7 @@ declare(strict_types=1);
 
 namespace App\Support;
 
-use App\Models\Central\Tenant;
+use App\Models\Tenant;
 use Stancl\Tenancy\Facades\Tenancy;
 
 class TenantContext
@@ -483,16 +481,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
 ## Models
 
-### Central Models
+All models follow Laravel convention and live in `app/Models/`. Central vs tenanted models are distinguished by traits/interfaces, not subdirectories.
 
-**Location:** `app/Models/Central/`
+### Central Models
 
 ```php
 <?php
 
 declare(strict_types=1);
 
-namespace App\Models\Central;
+namespace App\Models;
 
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 
@@ -515,14 +513,12 @@ class Tenant extends BaseTenant
 
 ### Tenanted Models
 
-**Location:** `app/Models/Tenanted/`
-
 ```php
 <?php
 
 declare(strict_types=1);
 
-namespace App\Models\Tenanted;
+namespace App\Models;
 
 use App\Builders\OrderBuilder;
 use Illuminate\Database\Eloquent\Model;
@@ -786,7 +782,7 @@ it('creates an order', function () {
 ### Running Code in Multiple Tenants
 
 ```php
-use App\Models\Central\Tenant;
+use App\Models\Tenant;
 use App\Support\TenantContext;
 
 $tenants = Tenant::all();
@@ -837,7 +833,8 @@ if (TenantContext::isActive()) {
 5. **Queue integration** - Jobs preserve tenant context
 
 **Best practices:**
-- Use directory structure to separate central and tenanted code
+- Use directory structure to separate central and tenanted actions/DTOs (not models)
+- Keep models in `app/Models/` following Laravel convention
 - Always use TenantContext helper for tenant access
 - Test both central and tenant contexts separately
 - Preserve tenant context in queued jobs
