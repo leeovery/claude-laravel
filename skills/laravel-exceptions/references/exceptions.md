@@ -53,7 +53,7 @@ class OrderException extends Exception implements HttpExceptionInterface
 
 ## Httpable Concern
 
-**[View full implementation →](./exceptions/Httpable.php)**
+**[View full implementation →](./Httpable.php)**
 
 ## Usage
 

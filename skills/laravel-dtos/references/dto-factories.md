@@ -11,16 +11,16 @@
 
 ## Infrastructure Files
 
-**[→ View all implementation files](./dto-factories/)**
+**[→ View all implementation files](./)**
 
 This guide includes complete implementation files you can copy to your project:
-- **[HasTestFactory.php](./dto-factories/HasTestFactory.php)** - Trait for test factory support
-- **[Data.php](./dto-factories/Data.php)** - Base Data class with test factory trait
-- **[DataTestFactory.php](./dto-factories/DataTestFactory.php)** - Base factory class for all Data factories
-- **[AppServiceProvider.php](./dto-factories/AppServiceProvider.php)** - Factory resolver registration
-- **[helpers.php](./dto-factories/helpers.php)** - collect_get() helper function
-- **[AddressDataFactory.php](./dto-factories/AddressDataFactory.php)** - Simple factory example
-- **[TraceDataFactory.php](./dto-factories/TraceDataFactory.php)** - Advanced factory with states
+- **[HasTestFactory.php](./HasTestFactory.php)** - Trait for test factory support
+- **[Data.php](./Data.php)** - Base Data class with test factory trait
+- **[DataTestFactory.php](./DataTestFactory.php)** - Base factory class for all Data factories
+- **[AppServiceProvider.php](./AppServiceProvider.php)** - Factory resolver registration
+- **[helpers.php](./helpers.php)** - collect_get() helper function
+- **[AddressDataFactory.php](./AddressDataFactory.php)** - Simple factory example
+- **[TraceDataFactory.php](./TraceDataFactory.php)** - Advanced factory with states
 
 ## Philosophy
 
@@ -154,7 +154,7 @@ class ProviderResponseDataFactory
 
 **Always use safe accessors:**
 
-**[→ See helpers.php for collect_get() implementation](./dto-factories/helpers.php)**
+**[→ See helpers.php for collect_get() implementation](./helpers.php)**
 
 ```php
 // Array access - use data_get() with default
@@ -283,7 +283,7 @@ public static function fromInboundMessage(InboundMessage $message): ProviderResp
 
 ### Domain Factories (Transform External Data)
 
-**[→ Implementation examples](./dto-factories/)**
+**[→ Implementation examples](./)**
 
 Domain factories live in `app/Data/Factories/` and transform external system data to DTOs:
 
@@ -304,7 +304,7 @@ app/Data/
 
 ### Test Factories (Generate Test Data)
 
-**[→ View complete implementation files](./dto-factories/)**
+**[→ View complete implementation files](./)**
 
 Test factories live in `database/factories/Data/` and generate fake data for testing:
 
@@ -320,13 +320,13 @@ database/factories/Data/
 **Setup requirements:**
 
 1. **Base Data class** - Apply `HasTestFactory` trait
-   - **[→ View Data.php](./dto-factories/Data.php)**
+   - **[→ View Data.php](./Data.php)**
 
 2. **Factory resolver** - Register in AppServiceProvider
-   - **[→ View AppServiceProvider.php](./dto-factories/AppServiceProvider.php)**
+   - **[→ View AppServiceProvider.php](./AppServiceProvider.php)**
 
 3. **Base factory class** - Extend `DataTestFactory`
-   - **[→ View DataTestFactory.php](./dto-factories/DataTestFactory.php)**
+   - **[→ View DataTestFactory.php](./DataTestFactory.php)**
 
 **Organization principles:**
 - Domain factories: `app/Data/Factories/` - Transform external data
@@ -818,7 +818,7 @@ class ProcessOrderAction
 
 ## Common Helper Functions
 
-**[→ View helpers.php implementation](./dto-factories/helpers.php)**
+**[→ View helpers.php implementation](./helpers.php)**
 
 ### data_get()
 
@@ -831,7 +831,7 @@ data_get($array, 'items.0.name')
 
 ### collect_get()
 
-Safe collection access (custom helper - **[see implementation](./dto-factories/helpers.php)**):
+Safe collection access (custom helper - **[see implementation](./helpers.php)**):
 
 ```php
 // Helper definition (add to app/helpers.php)
@@ -874,16 +874,16 @@ collect_get($payload, 'items')
 
 ## Setup Checklist
 
-**[→ View all implementation files](./dto-factories/)**
+**[→ View all implementation files](./)**
 
 To implement DTO factories in your project:
 
-1. ✅ **Base Data class** - **[Copy Data.php](./dto-factories/Data.php)** to `app/Data/Data.php`
-2. ✅ **Trait** - **[Copy HasTestFactory.php](./dto-factories/HasTestFactory.php)** to `app/Data/Concerns/HasTestFactory.php`
-3. ✅ **Base factory** - **[Copy DataTestFactory.php](./dto-factories/DataTestFactory.php)** to `database/factories/Data/DataTestFactory.php`
-4. ✅ **Factory resolver** - **[Copy AppServiceProvider.php method](./dto-factories/AppServiceProvider.php)** to your `AppServiceProvider::register()`
-5. ✅ **Helper** - **[Copy helpers.php](./dto-factories/helpers.php)** to `app/helpers.php` (ensure it's autoloaded in `composer.json`)
-6. ✅ **Examples** - **[View AddressDataFactory.php](./dto-factories/AddressDataFactory.php)** and **[TraceDataFactory.php](./dto-factories/TraceDataFactory.php)** for patterns
+1. ✅ **Base Data class** - **[Copy Data.php](./Data.php)** to `app/Data/Data.php`
+2. ✅ **Trait** - **[Copy HasTestFactory.php](./HasTestFactory.php)** to `app/Data/Concerns/HasTestFactory.php`
+3. ✅ **Base factory** - **[Copy DataTestFactory.php](./DataTestFactory.php)** to `database/factories/Data/DataTestFactory.php`
+4. ✅ **Factory resolver** - **[Copy AppServiceProvider.php method](./AppServiceProvider.php)** to your `AppServiceProvider::register()`
+5. ✅ **Helper** - **[Copy helpers.php](./helpers.php)** to `app/helpers.php` (ensure it's autoloaded in `composer.json`)
+6. ✅ **Examples** - **[View AddressDataFactory.php](./AddressDataFactory.php)** and **[TraceDataFactory.php](./TraceDataFactory.php)** for patterns
 
 **Autoload helpers in composer.json:**
 ```json
