@@ -1,12 +1,13 @@
 <h1 align="center">Claude Laravel</h1>
 
 <p align="center">
-  <strong>Opinionated Laravel Skills for Claude Code</strong>
+  <strong>Opinionated Laravel Skills & Commands for Claude Code</strong>
 </p>
 
 <p align="center">
   <a href="#installation">Installation</a> •
   <a href="#skills">Skills</a> •
+  <a href="#commands">Commands</a> •
   <a href="#how-it-works">How It Works</a> •
   <a href="#contributing">Contributing</a>
 </p>
@@ -34,8 +35,9 @@ That's it. The [Claude Manager](https://github.com/leeovery/claude-manager) hand
 This package depends on [`leeovery/claude-manager`](https://github.com/leeovery/claude-manager), which:
 
 1. **Symlinks skills** into your project's `.claude/skills/` directory
-2. **Manages your `.gitignore`** with a deterministic list of linked skills
-3. **Handles installation/removal** automatically via Composer hooks
+2. **Symlinks commands** into your project's `.claude/commands/` directory
+3. **Manages your `.gitignore`** with a deterministic list of linked skills and commands
+4. **Handles installation/removal** automatically via Composer hooks
 
 You don't need to configure anything—just install and start coding.
 
@@ -97,6 +99,12 @@ Each skill provides focused guidance on a specific aspect of Laravel development
 | Skill | Description |
 |-------|-------------|
 | [**laravel-testing**](skills/laravel-testing/) | Comprehensive testing patterns with Pest |
+
+## Commands
+
+Slash commands for common Laravel development tasks.
+
+*Coming soon.*
 
 ## Requirements
 
