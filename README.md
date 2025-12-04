@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/leeovery/claude-laravel/main/.github/logo.svg" width="400" alt="Claude Laravel">
-</p>
+<h1 align="center">Claude Laravel</h1>
 
 <p align="center">
   <strong>Opinionated Laravel Skills for Claude Code</strong>
@@ -119,7 +117,7 @@ Please open an issue first to discuss significant changes. These are opinionated
 ## Related Packages
 
 - [**claude-manager**](https://github.com/leeovery/claude-manager) — The plugin manager that powers skill installation
-- [**claude-technical-workflow**](https://github.com/leeovery/claude-technical-workflow) — Technical workflow skills for Claude Code
+- [**claude-technical-workflows**](https://github.com/leeovery/claude-technical-workflows) — Technical workflow skills for Claude Code
 
 ## License
 
