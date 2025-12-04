@@ -418,7 +418,7 @@ public function boot(): void
 
 **Extract reusable behavior:**
 
-**[View full implementation →](./models/HasUuid.php)**
+**[View full implementation →](./HasUuid.php)**
 
 **Use in models:**
 

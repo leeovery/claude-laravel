@@ -66,7 +66,7 @@ class ProcessResult
 
 ## Money Value Object
 
-**[View full implementation →](./value-objects/Money.php)**
+**[View full implementation →](./Money.php)**
 
 ## Usage Examples
 

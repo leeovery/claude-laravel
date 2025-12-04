@@ -78,18 +78,18 @@ The validation testing system requires two components:
 1. **RequestDataProviderItem class** - The data provider helper class
 2. **assertValidationErrors macro** - TestResponse macro for clean assertions
 
-**[📖 Complete Macro Setup Guide →](./validation-testing/macro-setup.md)**
+**[📖 Complete Macro Setup Guide →](./macro-setup.md)**
 
 **Component Implementations:**
-- **[View RequestDataProviderItem →](./validation-testing/RequestDataProviderItem.php)**
-- **[View MacroServiceProvider →](./validation-testing/MacroServiceProvider.php)**
+- **[View RequestDataProviderItem →](./RequestDataProviderItem.php)**
+- **[View MacroServiceProvider →](./MacroServiceProvider.php)**
 
 ### File Locations
 
 - `tests/Concerns/RequestDataProviderItem.php` - Helper class
 - `app/Providers/MacroServiceProvider.php` - Macro registration
 
-**⚠️ Important:** The `assertValidationErrors` macro must be registered in `MacroServiceProvider` and added to `bootstrap/providers.php` (or `config/app.php` for Laravel 10). See the [macro setup guide](./validation-testing/macro-setup.md) for complete installation instructions.
+**⚠️ Important:** The `assertValidationErrors` macro must be registered in `MacroServiceProvider` and added to `bootstrap/providers.php` (or `config/app.php` for Laravel 10). See the [macro setup guide](./macro-setup.md) for complete installation instructions.
 
 ### The RequestDataProviderItem Class
 

@@ -221,7 +221,7 @@ use Illuminate\Validation\Rules\Enum;
 
 ### 7. Custom Validation Rules
 
-**[View full implementation →](./form-requests/ValidPostcodeRule.php)**
+**[View full implementation →](./ValidPostcodeRule.php)**
 
 **Usage:**
 

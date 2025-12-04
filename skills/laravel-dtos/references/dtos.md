@@ -26,7 +26,7 @@ All DTOs extend `Spatie\LaravelData\Data` through a custom base class.
 
 ## Base Data Class
 
-**[View full implementation →](./dtos/Data.php)**
+**[View full implementation →](./Data.php)**
 
 **Location:** `app/Data/Data.php`
 
@@ -144,7 +144,7 @@ public function __construct(
 
 **Example formatter:**
 
-**[View full implementation →](./dtos/EmailFormatter.php)**
+**[View full implementation →](./EmailFormatter.php)**
 
 **Location:** `app/Data/Formatters/EmailFormatter.php`
 

@@ -147,7 +147,7 @@ my-package/
 
 ### Basic Service Provider
 
-**[View full implementation →](./examples/MyPackageServiceProvider.php)**
+**[View full implementation →](./ExampleServiceProvider.php)**
 
 ### Advanced Service Provider
 
@@ -157,7 +157,7 @@ For more advanced configurations with multiple boot methods, command registratio
 
 ### Action Base Class
 
-**[View full implementation →](./examples/Action.php)**
+**[View full implementation →](./ExampleAction.php)**
 
 **Usage in applications:**
 
@@ -178,7 +178,7 @@ ProcessPaymentAction::run($paymentData);
 
 ### Data Base Class
 
-**[View full implementation →](./examples/BaseData.php)**
+**[View full implementation →](./ExampleBaseData.php)**
 
 ## Testing Packages
 
