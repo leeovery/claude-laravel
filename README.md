@@ -125,6 +125,7 @@ Please open an issue first to discuss significant changes. These are opinionated
 ## Related Packages
 
 - [**claude-manager**](https://github.com/leeovery/claude-manager) — The plugin manager that powers skill installation
+- [**claude-nuxt**](https://github.com/leeovery/claude-nuxt) — Nuxt.js development skills for Claude Code
 - [**claude-technical-workflows**](https://github.com/leeovery/claude-technical-workflows) — Technical workflow skills for Claude Code
 
 ## License
