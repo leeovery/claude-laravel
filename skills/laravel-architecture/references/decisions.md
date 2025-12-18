@@ -278,19 +278,6 @@ Actions/
 - Changing frequently
 - Coupled to domain
 
-## Multi-Tenancy Decisions
-
-**Database separation (prefer for isolation):**
-```
-Actions/
-├── Central/
-└── Tenanted/
-```
-
-**Single database (simpler):**
-- Add `tenant_id` to tables
-- Global scopes
-
 ## Enum vs Constant
 
 **Enum (prefer):**
