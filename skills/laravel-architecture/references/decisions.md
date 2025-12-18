@@ -237,21 +237,13 @@ Services/
 
 ## Namespace Organization
 
-**By feature (prefer):**
+**By feature:**
 ```
 Actions/
 ├── Order/
 │   ├── CreateOrderAction
 │   └── CancelOrderAction
 └── User/
-```
-
-**By type (avoid):**
-```
-Actions/
-├── Create/
-│   ├── CreateOrderAction
-│   └── CreateUserAction
 ```
 
 ## Testing Decisions
