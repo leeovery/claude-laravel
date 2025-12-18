@@ -111,9 +111,8 @@ Example: User registration
 ./vendor/bin/pest --coverage
 ```
 
-### 16. Code Style (optional but recommended)
+### 16. Code Style
 ```bash
-composer require laravel/pint --dev
 ./vendor/bin/pint
 ```
 
