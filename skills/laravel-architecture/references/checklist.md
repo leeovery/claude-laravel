@@ -74,37 +74,30 @@ Example: User registration
 - [ ] Set up tenant migrations
 - [ ] Configure tenant identification
 
-### 11. External Services (if using)
-- [ ] Create service directory structure
-- [ ] Create Saloon connector
-- [ ] Create request classes
-- [ ] Create service manager
-- [ ] Add service provider
-
 ## Production Preparation
 
-### 12. Environment Configuration
+### 11. Environment Configuration
 - [ ] Review all `.env` variables
 - [ ] Set `APP_ENV=production`
 - [ ] Set `APP_DEBUG=false`
 - [ ] Configure logging
 - [ ] Set up error tracking (Sentry, etc.)
 
-### 13. Performance
+### 12. Performance
 - [ ] Run `php artisan config:cache`
 - [ ] Run `php artisan route:cache`
 - [ ] Run `php artisan view:cache`
 - [ ] Configure Redis for cache/sessions/queue
 - [ ] Set up horizon (if using queues)
 
-### 14. Security
+### 13. Security
 - [ ] Review CORS settings
 - [ ] Configure rate limiting
 - [ ] Set up API token management
 - [ ] Review middleware configuration
 - [ ] Enable HTTPS
 
-### 15. Documentation
+### 14. Documentation
 - [ ] Document API endpoints (if public API)
 - [ ] Add README with setup instructions
 - [ ] Document custom patterns/conventions
@@ -112,19 +105,19 @@ Example: User registration
 
 ## Verification
 
-### 16. Run Tests
+### 15. Run Tests
 ```bash
 ./vendor/bin/pest
 ./vendor/bin/pest --coverage
 ```
 
-### 17. Static Analysis (optional but recommended)
+### 16. Static Analysis (optional but recommended)
 ```bash
 composer require phpstan/phpstan --dev
 ./vendor/bin/phpstan analyse
 ```
 
-### 18. Code Style (optional but recommended)
+### 17. Code Style (optional but recommended)
 ```bash
 composer require laravel/pint --dev
 ./vendor/bin/pint
