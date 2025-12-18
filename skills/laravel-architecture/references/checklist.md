@@ -111,13 +111,7 @@ Example: User registration
 ./vendor/bin/pest --coverage
 ```
 
-### 16. Static Analysis (optional but recommended)
-```bash
-composer require phpstan/phpstan --dev
-./vendor/bin/phpstan analyse
-```
-
-### 17. Code Style (optional but recommended)
+### 16. Code Style (optional but recommended)
 ```bash
 composer require laravel/pint --dev
 ./vendor/bin/pint
