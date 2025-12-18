@@ -122,7 +122,7 @@ Services/
 
 **Don't use for:**
 - Internal business logic (use actions)
-- Simple HTTP calls (use Saloon directly)
+- Simple HTTP calls (use Laravel's HTTP facade directly)
 
 ### Value Objects
 
