@@ -115,22 +115,3 @@ Example: User registration
 ```bash
 ./vendor/bin/pint
 ```
-
-## Common Commands Reference
-
-```bash
-# Development
-php artisan serve
-php artisan queue:work
-php artisan migrate:fresh --seed
-
-# Testing
-./vendor/bin/pest
-./vendor/bin/pest --filter=OrderTest
-
-# Production
-php artisan optimize
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
