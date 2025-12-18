@@ -252,12 +252,13 @@ Actions/
 - HTTP endpoints
 - Complete workflows
 - Integration points
+- Anything touching the database
+- Code using framework infrastructure
 
 **Unit tests for:**
-- Actions (isolated)
-- DTOs (transformation)
-- Builders (query logic)
-- Value objects (behavior)
+- Isolated pure PHP classes with no external dependencies
+- Value objects (self-contained logic and behavior)
+- Utility classes with calculations or transformations
 
 **Don't test:**
 - Framework code
