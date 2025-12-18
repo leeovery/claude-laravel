@@ -116,10 +116,8 @@ Guidance for choosing the right architectural pattern for your use case.
 Services/
 └── Payment/
     ├── PaymentManager.php
-    ├── Connectors/       # Saloon
     ├── Drivers/          # Stripe, PayPal
-    ├── Contracts/
-    └── Requests/
+    └── Contracts/
 ```
 
 **Don't use for:**
