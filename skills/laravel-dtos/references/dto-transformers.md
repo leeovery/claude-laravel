@@ -4,32 +4,10 @@
 
 **Related guides:**
 - [dtos.md](dtos.md) - Core DTO patterns and structure
+- [test-factories.md](test-factories.md) - Test factories for creating hydrated DTOs in tests
 - [actions.md](../../laravel-actions/references/actions.md) - Actions consume transformer-created DTOs
 - [services.md](../../laravel-services/references/services.md) - Service layer integration points for transformers
-- [testing.md](../../laravel-testing/references/testing.md) - Testing transformer logic and using test factories
-
-## Transformers vs Test Factories
-
-**Important distinction:**
-
-| Aspect | Transformers | Test Factories |
-|--------|--------------|----------------|
-| **Purpose** | Transform domain data → DTO | Generate fake test data |
-| **Location** | `app/Data/Transformers/` | `database/factories/Data/` |
-| **Class naming** | `{Entity}DataTransformer` | `{Entity}DataFactory` |
-| **Used in** | Domain logic, controllers, handlers | Tests only |
-| **Method style** | `::fromStripe()`, `::fromRequest()` | `::testFactory()->make()` |
-
-## Infrastructure Files
-
-**[→ View all implementation files](./)**
-
-This guide includes complete implementation files you can copy to your project:
-- **[HasTestFactory.php](./HasTestFactory.php)** - Trait for test factory support
-- **[Data.php](./Data.php)** - Base Data class with test factory trait
-- **[DataTestFactory.php](./DataTestFactory.php)** - Base factory class for all test factories
-- **[AppServiceProvider.php](./AppServiceProvider.php)** - Test factory resolver registration
-- **[helpers.php](./helpers.php)** - collect_get() helper function
+- [testing.md](../../laravel-testing/references/testing.md) - Testing transformer logic
 
 ## Philosophy
 
@@ -313,38 +291,12 @@ app/Data/
         └── UserDataTransformer.php
 ```
 
-### Test Factories (Generate Test Data)
-
-**[→ View complete implementation files](./)**
-
-Test factories live in `database/factories/Data/` and generate fake data for testing:
-
-```
-database/factories/Data/
-├── DataTestFactory.php           # Base factory class
-├── AddressDataFactory.php        # Simple example
-├── TraceDataFactory.php          # Advanced with states
-├── OrderDataFactory.php
-└── UserDataFactory.php
-```
-
-**Setup requirements:**
-
-1. **Base Data class** - Apply `HasTestFactory` trait
-   - **[→ View Data.php](./Data.php)**
-
-2. **Factory resolver** - Register in AppServiceProvider
-   - **[→ View AppServiceProvider.php](./AppServiceProvider.php)**
-
-3. **Base factory class** - Extend `DataTestFactory`
-   - **[→ View DataTestFactory.php](./DataTestFactory.php)**
-
 **Organization principles:**
-- Transformers: `app/Data/Transformers/` - Domain transformation logic
-- Test factories: `database/factories/Data/` - Generate test data
 - Subdirectories for external services with multiple transformers
 - One transformer per DTO (can have multiple methods)
 - Name transformers after the DTO they create: `{DTO}Transformer`
+
+For test factories, see **[test-factories.md](test-factories.md)**.
 
 ## Real-World Examples
 
@@ -855,29 +807,6 @@ collect_get($payload, 'items')
 - Field-level tests for specific mappings
 - Validation tests for guards
 
-**Remember:** Transformers transform domain data, test factories generate test data, actions execute business logic. Keep concerns separate.
+**Remember:** Transformers transform domain data, actions execute business logic. Keep concerns separate.
 
-## Setup Checklist
-
-**[→ View all implementation files](./)**
-
-To implement DTO test factories in your project:
-
-1. **Base Data class** - **[Copy Data.php](./Data.php)** to `app/Data/Data.php`
-2. **Trait** - **[Copy HasTestFactory.php](./HasTestFactory.php)** to `app/Data/Concerns/HasTestFactory.php`
-3. **Base factory** - **[Copy DataTestFactory.php](./DataTestFactory.php)** to `database/factories/Data/DataTestFactory.php`
-4. **Factory resolver** - **[Copy AppServiceProvider.php method](./AppServiceProvider.php)** to your `AppServiceProvider::register()`
-5. **Helper** - **[Copy helpers.php](./helpers.php)** to `app/helpers.php` (ensure it's autoloaded in `composer.json`)
-
-**Autoload helpers in composer.json:**
-```json
-{
-    "autoload": {
-        "files": [
-            "app/helpers.php"
-        ]
-    }
-}
-```
-
-Run `composer dump-autoload` after adding the helpers file.
+For test factories (creating hydrated DTOs for tests), see **[test-factories.md](test-factories.md)**.

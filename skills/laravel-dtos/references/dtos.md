@@ -7,6 +7,7 @@
 - [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers transform requests to DTOs
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation before transformation
 - [dto-transformers.md](dto-transformers.md) - **Transformers for external system data**
+- [test-factories.md](test-factories.md) - **Test factories for creating hydrated DTOs in tests**
 - [models.md](../../laravel-models/references/models.md) - Casting model attributes to DTOs
 - [testing.md](../../laravel-testing/references/testing.md) - Using DTO test factories in tests, avoiding hardcoded data
 - [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Creating DTO base classes for packages

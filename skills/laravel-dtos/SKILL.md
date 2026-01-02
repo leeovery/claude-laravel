@@ -23,6 +23,11 @@ Data Transfer Objects: never pass primitives, always use structured DTOs with Sp
 - Nested DTOs
 - Safe data access patterns
 
+**[test-factories.md](references/test-factories.md)** - Test Factories:
+- Create hydrated DTOs for tests
+- Factory states for different scenarios
+- Setup and configuration
+
 ## Pattern
 
 ```php
