@@ -154,17 +154,6 @@ class Order extends Model
 {
     use HasStates;
 
-    // Wrap transitions in methods
-    public function markAsCompleted(): self
-    {
-        return $this->state->transitionTo(OrderCompleted::class);
-    }
-
-    public function markAsCancelled(): self
-    {
-        return $this->state->transitionTo(OrderCancelled::class);
-    }
-
     // Helper methods for checking state
     public function isPending(): bool
     {
@@ -184,6 +173,117 @@ class Order extends Model
         ];
     }
 }
+```
+
+## Model State Helper Methods
+
+Use the `markAs*` convention for model methods that trigger state transitions. These helpers provide a clean API and delegate to the state class.
+
+### Basic Helpers
+
+```php
+class Order extends Model
+{
+    use HasStates;
+
+    public function markAsProcessing(): self
+    {
+        $this->state->transitionTo(OrderProcessing::class);
+
+        return $this;
+    }
+
+    public function markAsCompleted(): self
+    {
+        $this->state->transitionTo(OrderCompleted::class);
+
+        return $this;
+    }
+
+    public function markAsCancelled(): self
+    {
+        $this->state->transitionTo(OrderCancelled::class);
+
+        return $this;
+    }
+}
+```
+
+### Helpers with Parameters
+
+When custom transitions require additional data, pass parameters through the helper method:
+
+```php
+class Order extends Model
+{
+    use HasStates;
+
+    public function markAsRefunded(string $reason, ?int $refundedBy = null): self
+    {
+        $this->state->transitionTo(OrderRefunded::class, $reason, $refundedBy);
+
+        return $this;
+    }
+
+    public function markAsShipped(string $trackingNumber, string $carrier): self
+    {
+        $this->state->transitionTo(OrderShipped::class, $trackingNumber, $carrier);
+
+        return $this;
+    }
+}
+```
+
+The transition class receives these parameters in its constructor:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\States\Order\Transitions;
+
+use App\Models\Order;
+use App\States\Order\OrderRefunded;
+use Spatie\ModelStates\Transition;
+
+class ToRefunded extends Transition
+{
+    public function __construct(
+        public Order $order,
+        public string $reason,
+        public ?int $refundedBy = null,
+    ) {}
+
+    public function handle(): Order
+    {
+        $this->order->state = new OrderRefunded($this->order);
+        $this->order->refunded_at = now();
+        $this->order->refund_reason = $this->reason;
+        $this->order->refunded_by = $this->refundedBy;
+        $this->order->save();
+
+        return $this->order;
+    }
+}
+```
+
+### Usage
+
+```php
+// Simple transition
+$order->markAsCompleted();
+
+// Transition with parameters
+$order->markAsRefunded(
+    reason: 'Customer requested refund',
+    refundedBy: auth()->id(),
+);
+
+// Chaining
+$order->markAsProcessing()
+    ->refresh()
+    ->notify(new OrderProcessingNotification);
 ```
 
 ## Query Builders with States
