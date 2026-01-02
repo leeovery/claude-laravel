@@ -286,6 +286,111 @@ $order->markAsProcessing()
     ->notify(new OrderProcessingNotification);
 ```
 
+## Model State Check Methods
+
+Use the `canBe*` convention for model methods that check if a state transition is allowed. These helpers return a boolean and delegate to the state class's `canTransitionTo()` method.
+
+### Basic Checks
+
+```php
+class Order extends Model
+{
+    use HasStates;
+
+    public function canBeProcessing(): bool
+    {
+        return $this->state->canTransitionTo(OrderProcessing::class);
+    }
+
+    public function canBeCompleted(): bool
+    {
+        return $this->state->canTransitionTo(OrderCompleted::class);
+    }
+
+    public function canBeCancelled(): bool
+    {
+        return $this->state->canTransitionTo(OrderCancelled::class);
+    }
+
+    public function canBeRefunded(): bool
+    {
+        return $this->state->canTransitionTo(OrderRefunded::class);
+    }
+
+    public function canBeSettled(): bool
+    {
+        return $this->state->canTransitionTo(OrderSettled::class);
+    }
+}
+```
+
+### Usage
+
+```php
+// Guard before transition
+if ($order->canBeCancelled()) {
+    $order->markAsCancelled();
+}
+
+// In controllers for authorization
+public function cancel(Order $order): RedirectResponse
+{
+    abort_unless($order->canBeCancelled(), 403, 'Order cannot be cancelled');
+
+    $order->markAsCancelled();
+
+    return redirect()->back();
+}
+
+// In Blade templates
+@if($order->canBeCancelled())
+    <button wire:click="cancel">Cancel Order</button>
+@endif
+
+// In Livewire components
+public function cancel(): void
+{
+    if (! $this->order->canBeCancelled()) {
+        return;
+    }
+
+    $this->order->markAsCancelled();
+}
+```
+
+### Combining with markAs* Methods
+
+The `canBe*` and `markAs*` methods work together to provide a clean API:
+
+```php
+class Order extends Model
+{
+    use HasStates;
+
+    // Check methods
+    public function canBeRefunded(): bool
+    {
+        return $this->state->canTransitionTo(OrderRefunded::class);
+    }
+
+    // Transition methods
+    public function markAsRefunded(string $reason, ?int $refundedBy = null): self
+    {
+        $this->state->transitionTo(OrderRefunded::class, $reason, $refundedBy);
+
+        return $this;
+    }
+}
+
+// Usage
+if ($order->canBeRefunded()) {
+    $order->markAsRefunded(
+        reason: 'Customer requested refund',
+        refundedBy: auth()->id(),
+    );
+}
+```
+
 ## Query Builders with States
 
 ```php
