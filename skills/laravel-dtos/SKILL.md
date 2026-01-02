@@ -16,12 +16,12 @@ Data Transfer Objects: never pass primitives, always use structured DTOs with Sp
 - Test factories
 - Validation integration
 
-**[dto-factories.md](references/dto-factories.md)** - DTO Factory pattern:
+**[dto-transformers.md](references/dto-transformers.md)** - DTO Transformers:
 - Transform external data into internal DTOs
-- Named constructors
+- Static factory methods with typed parameters
 - Field mapping and enum transformations
 - Nested DTOs
-- Safe data access
+- Test factories for generating test data
 
 ## Pattern
 

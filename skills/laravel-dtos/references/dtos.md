@@ -6,7 +6,7 @@
 - [actions.md](../../laravel-actions/references/actions.md) - Actions accept DTOs as parameters
 - [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers transform requests to DTOs
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation before transformation
-- [dto-factories.md](dto-factories.md) - **Transform external system data to DTOs**
+- [dto-transformers.md](dto-transformers.md) - **Transformers for external system data**
 - [models.md](../../laravel-models/references/models.md) - Casting model attributes to DTOs
 - [testing.md](../../laravel-testing/references/testing.md) - Using DTO test factories in tests, avoiding hardcoded data
 - [package-extraction.md](../../laravel-packages/references/package-extraction.md) - Creating DTO base classes for packages
@@ -118,13 +118,13 @@ $data = OrderData::from([
 ]);
 ```
 
-### Complex Transformations: Use Factories
+### Complex Transformations: Use Transformers
 
-For complex applications with intricate data transformations, create dedicated factory classes with static methods. See **[dto-factories.md](dto-factories.md)** for complete patterns.
+For complex applications with intricate data transformations, create dedicated transformer classes with static factory methods. See **[dto-transformers.md](dto-transformers.md)** for complete patterns.
 
 ```php
 // For external system data with complex mapping
-$data = PaymentDataFactory::fromStripePaymentIntent($webhook['data']);
+$data = PaymentDataTransformer::fromStripePaymentIntent($webhook['data']);
 
 // For request data with version-specific field names
 $data = OrderDataTransformer::fromRequest($request);
@@ -132,8 +132,7 @@ $data = OrderDataTransformer::fromRequest($request);
 
 **Hierarchy of preference:**
 1. `Data::from($array)` - Simple cases, direct mapping
-2. `Transformer::fromRequest()` - Request-specific field mapping
-3. `Factory::fromExternalSystem()` - Complex external data transformation
+2. `Transformer::from*()` - Complex transformations with typed parameters
 
 ## Using Spatie Laravel Data
 
@@ -263,7 +262,80 @@ public function __construct(
 
 **Location:** `app/Data/Formatters/EmailFormatter.php`
 
-### 6. Test Factories
+### 6. Static Factory Methods on DTOs
+
+For smaller applications or when starting out, add static `from*` methods directly on the DTO class. This provides factory-like behavior while leveraging the package's automatic type casting.
+
+**Method naming:** `from{SourceType}` - e.g., `fromArray`, `fromRequest`, `fromModel`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Data;
+
+use App\Http\Requests\CreateOrderRequest;
+use App\Models\Order;
+
+class OrderData extends Data
+{
+    public function __construct(
+        public string $customerEmail,
+        public ?string $notes,
+        public OrderStatus $status,
+        /** @var Collection<int, OrderItemData> */
+        public Collection $items,
+    ) {}
+
+    public static function fromRequest(CreateOrderRequest $request): self
+    {
+        return self::from([
+            'customerEmail' => $request->input('customer_email'),
+            'notes' => $request->input('notes'),
+            'status' => $request->input('status'),
+            'items' => $request->input('items'),
+        ]);
+    }
+
+    public static function fromModel(Order $order): self
+    {
+        return self::from([
+            'customerEmail' => $order->customer_email,
+            'notes' => $order->notes,
+            'status' => $order->status,
+            'items' => $order->items->toArray(),
+        ]);
+    }
+}
+```
+
+**Usage:**
+
+```php
+// From request
+$data = OrderData::fromRequest($request);
+
+// From model
+$data = OrderData::fromModel($order);
+
+// Still works with ::from() for simple cases
+$data = OrderData::from(['customerEmail' => 'test@example.com', ...]);
+```
+
+**When to use this pattern:**
+- Smaller applications with fewer DTOs
+- When starting out before complexity warrants separate transformers
+- Simple transformations that don't need dedicated test coverage
+- When the mapping is tightly coupled to a single DTO
+
+**When to use separate transformers instead:**
+- Multiple external sources map to the same DTO
+- Complex transformation logic requiring extensive testing
+- Shared transformation logic across multiple DTOs
+- Larger applications with clear separation of concerns
+
+### 7. Test Factories
 
 **Link DTOs to test factories** for easy test data generation:
 
@@ -287,7 +359,7 @@ $collection = OrderItemData::testFactory()->collect(count: 5);
 
 **For comprehensive guidance on using DTO test factories in your tests**, see [testing.md](../../laravel-testing/references/testing.md) - includes how to avoid hardcoded test data and use factories for more reliable tests.
 
-### 7. Model Casts
+### 8. Model Casts
 
 **Cast model JSON columns to DTOs:**
 
@@ -316,11 +388,11 @@ $order = Order::create([
 $metadata = $order->metadata;  // Returns OrderMetadataData instance
 ```
 
-### 8. Domain Factories
+### 9. Transformers
 
-**Transform external system data** into internal DTOs using dedicated factory classes.
+**Transform external system data** into internal DTOs using dedicated transformer classes with static factory methods.
 
-**[→ Complete guide: dto-factories.md](dto-factories.md)**
+**[→ Complete guide: dto-transformers.md](dto-transformers.md)**
 
 **Quick example:**
 
@@ -329,13 +401,13 @@ $metadata = $order->metadata;  // Returns OrderMetadataData instance
 
 declare(strict_types=1);
 
-namespace App\Data\Factories;
+namespace App\Data\Transformers;
 
 use App\Data\PaymentData;
 use App\Enums\PaymentStatus;
 use Carbon\CarbonImmutable;
 
-class PaymentDataFactory
+class PaymentDataTransformer
 {
     public static function fromStripePaymentIntent(array $paymentIntent): PaymentData
     {
@@ -358,13 +430,13 @@ class PaymentDataFactory
 }
 ```
 
-**Use factories when:**
+**Use transformers when:**
 - Integrating external systems (APIs, webhooks, message queues)
 - Multiple data sources map to same DTO
 - Complex field transformations with business logic
 - Transformation logic needs dedicated testing
 
-**See [dto-factories.md](dto-factories.md) for complete patterns, testing strategies, and real-world examples.**
+**See [dto-transformers.md](dto-transformers.md) for complete patterns, testing strategies, and real-world examples.**
 
 ## Data Transformers
 
@@ -447,9 +519,8 @@ app/Data/
 │   ├── EmailFormatter.php
 │   ├── PhoneFormatter.php
 │   └── PostcodeFormatter.php
-├── Factories/
-│   └── PaymentDataFactory.php
 └── Transformers/
+    ├── PaymentDataTransformer.php
     ├── Web/
     │   ├── OrderDataTransformer.php
     │   └── UserDataTransformer.php

@@ -1,13 +1,24 @@
-# DTO Factories - Domain Data Transformation
+# DTO Transformers - Domain Data Transformation
 
-**Factory classes transform external system data into internal DTOs.** Use factories when you need explicit, testable mapping logic between different data structures.
+**Transformer classes transform external system data into internal DTOs.** Use transformers when you need explicit, testable mapping logic between different data structures.
 
 **Related guides:**
 - [dtos.md](dtos.md) - Core DTO patterns and structure
-- [actions.md](../../laravel-actions/references/actions.md) - Actions consume factory-created DTOs
-- [services.md](../../laravel-services/references/services.md) - Service layer integration points for factories
-- [testing.md](../../laravel-testing/references/testing.md) - Testing factory transformation logic
-- [models.md](../../laravel-models/references/models.md) - Model factory vs DTO factory distinction
+- [actions.md](../../laravel-actions/references/actions.md) - Actions consume transformer-created DTOs
+- [services.md](../../laravel-services/references/services.md) - Service layer integration points for transformers
+- [testing.md](../../laravel-testing/references/testing.md) - Testing transformer logic and using test factories
+
+## Transformers vs Test Factories
+
+**Important distinction:**
+
+| Aspect | Transformers | Test Factories |
+|--------|--------------|----------------|
+| **Purpose** | Transform domain data → DTO | Generate fake test data |
+| **Location** | `app/Data/Transformers/` | `database/factories/Data/` |
+| **Class naming** | `{Entity}DataTransformer` | `{Entity}DataFactory` |
+| **Used in** | Domain logic, controllers, handlers | Tests only |
+| **Method style** | `::fromStripe()`, `::fromRequest()` | `::testFactory()->make()` |
 
 ## Infrastructure Files
 
@@ -16,24 +27,22 @@
 This guide includes complete implementation files you can copy to your project:
 - **[HasTestFactory.php](./HasTestFactory.php)** - Trait for test factory support
 - **[Data.php](./Data.php)** - Base Data class with test factory trait
-- **[DataTestFactory.php](./DataTestFactory.php)** - Base factory class for all Data factories
-- **[AppServiceProvider.php](./AppServiceProvider.php)** - Factory resolver registration
+- **[DataTestFactory.php](./DataTestFactory.php)** - Base factory class for all test factories
+- **[AppServiceProvider.php](./AppServiceProvider.php)** - Test factory resolver registration
 - **[helpers.php](./helpers.php)** - collect_get() helper function
-- **[AddressDataFactory.php](./AddressDataFactory.php)** - Simple factory example
-- **[TraceDataFactory.php](./TraceDataFactory.php)** - Advanced factory with states
 
 ## Philosophy
 
-DTO factories serve a specific purpose:
+DTO transformers serve a specific purpose:
 - **Transform external data** (APIs, message queues, webhooks) into internal DTOs
 - **Map heterogeneous sources** to normalized domain objects
-- **Provide testable transformation logic** with well-named methods
+- **Provide testable transformation logic** with well-named static methods
 - **Preserve original data** alongside transformed data
 - **Handle complex field mapping** that's too intricate for inline constructors
 
-## When to Use Factories
+## When to Use Transformers
 
-### ✅ Use Factories When:
+### Use Transformers When:
 
 1. **Integrating external systems** with different data structures
    - Third-party APIs (Stripe, Twilio, etc.)
@@ -53,15 +62,15 @@ DTO factories serve a specific purpose:
    - Nested DTO hierarchies
 
 4. **Testing transformation logic** in isolation
-   - Factory methods are static and easily testable
+   - Transformer methods are static and easily testable
    - Complex mapping warrants dedicated tests
 
-### ❌ Don't Use Factories When:
+### Don't Use Transformers When:
 
-1. **Simple request mapping** - Use Spatie's `::from()` or `#[MapInputName]`
-2. **Child DTOs** - Create inline in parent factory
+1. **Simple data** - Use Spatie's `::from()` directly
+2. **Child DTOs** - Create inline in parent transformer
 3. **Direct model to DTO** - Use DTO's `::from($model)` directly
-4. **Internal application data** - Use constructors or `::from()`
+4. **Internal application data** - Use `::from()` with arrays
 
 ## Decision Tree
 
@@ -75,27 +84,27 @@ Is data from external system?
     └─ YES → Does transformation have business logic?
         ├─ NO → Use inline transformation
         │
-        └─ YES → Create Factory
-            └─ Multiple sources? → Multiple factory methods
+        └─ YES → Create Transformer
+            └─ Multiple sources? → Multiple static methods
 ```
 
-## Factory Structure
+## Transformer Structure
 
-### Basic Factory
+### Basic Transformer
 
 ```php
 <?php
 
 declare(strict_types=1);
 
-namespace App\Data\Factories;
+namespace App\Data\Transformers;
 
 use App\Data\Match\MatchData;
 use App\Enums\MatchSource;
 use App\Enums\MatchStatus;
 use Carbon\CarbonImmutable;
 
-class MatchDataFactory
+class MatchDataTransformer
 {
     public static function fromFinderAutomatedMatch(array $match): MatchData
     {
@@ -129,14 +138,14 @@ class MatchDataFactory
 }
 ```
 
-## Factory Patterns
+## Transformer Patterns
 
 ### 1. Named Constructor Pattern
 
 **Method names clearly indicate source system:**
 
 ```php
-class ProviderResponseDataFactory
+class ProviderResponseDataTransformer
 {
     // Pattern: from{SourceSystem}{ContextualInfo}
     public static function fromFinderMessage(InboundMessage $message): ProviderResponseData
@@ -209,11 +218,11 @@ class ProviderResponseDataFactory
     ])),
 ```
 
-**First-class callable syntax for reusable factories:**
+**First-class callable syntax for reusable transformers:**
 
 ```php
 'matches' => collect_get($payload, 'loas')
-    ->map(MatchDataFactory::fromFinderAutomatedMatch(...))
+    ->map(MatchDataTransformer::fromFinderAutomatedMatch(...))
 ```
 
 ### 5. Conditional Nested DTOs
@@ -257,7 +266,7 @@ public static function fromStripePaymentIntent(array $paymentIntent): PaymentDat
 - Adding new fields without re-fetching
 - Compliance and data retention
 
-### 7. Validation in Factories
+### 7. Validation in Transformers
 
 **Add guards for required data:**
 
@@ -279,27 +288,29 @@ public static function fromInboundMessage(InboundMessage $message): ProviderResp
 }
 ```
 
-## Factory Organization
+## Organization
 
-### Domain Factories (Transform External Data)
+### Transformers (Domain Logic)
 
 **[→ Implementation examples](./)**
 
-Domain factories live in `app/Data/Factories/` and transform external system data to DTOs:
+Transformers live in `app/Data/Transformers/` and transform external system data to DTOs:
 
 ```
 app/Data/
-├── Factories/
-│   ├── MatchDataFactory.php
-│   ├── FinderProviderResponseDataFactory.php
-│   ├── NexusProviderResponseDataFactory.php
-│   ├── MatchSuggestionDataFactory.php
-│   ├── Stripe/
-│   │   ├── PaymentDataFactory.php
-│   │   └── CustomerDataFactory.php
-│   └── External/
-│       └── WebhookDataFactory.php
-└── {Domain}Data.php
+└── Transformers/
+    ├── MatchDataTransformer.php
+    ├── FinderProviderResponseDataTransformer.php
+    ├── NexusProviderResponseDataTransformer.php
+    ├── MatchSuggestionDataTransformer.php
+    ├── Stripe/
+    │   ├── PaymentDataTransformer.php
+    │   └── CustomerDataTransformer.php
+    ├── External/
+    │   └── WebhookDataTransformer.php
+    └── Web/
+        ├── OrderDataTransformer.php
+        └── UserDataTransformer.php
 ```
 
 ### Test Factories (Generate Test Data)
@@ -329,11 +340,11 @@ database/factories/Data/
    - **[→ View DataTestFactory.php](./DataTestFactory.php)**
 
 **Organization principles:**
-- Domain factories: `app/Data/Factories/` - Transform external data
+- Transformers: `app/Data/Transformers/` - Domain transformation logic
 - Test factories: `database/factories/Data/` - Generate test data
-- Subdirectories for external services with multiple factories
-- One factory per DTO (can have multiple methods)
-- Name factories after the DTO they create: `{DTO}Factory`
+- Subdirectories for external services with multiple transformers
+- One transformer per DTO (can have multiple methods)
+- Name transformers after the DTO they create: `{DTO}Transformer`
 
 ## Real-World Examples
 
@@ -346,7 +357,7 @@ database/factories/Data/
 
 declare(strict_types=1);
 
-namespace App\Data\Factories;
+namespace App\Data\Transformers;
 
 use App\Data\Match\MatchData;
 use App\Data\Match\ProviderAddressData;
@@ -358,7 +369,7 @@ use App\Models\Tenanted\Match\TraceMatch;
 use App\Services\Nexus\DataObjects\Provider as NexusProvider;
 use Carbon\CarbonImmutable;
 
-class MatchDataFactory
+class MatchDataTransformer
 {
     /**
      * Create MatchData from Finder automated match array.
@@ -485,13 +496,13 @@ class MatchDataFactory
 
 declare(strict_types=1);
 
-namespace App\Data\Factories;
+namespace App\Data\Transformers;
 
 use App\Data\Match\ProviderResponseData;
 use App\Models\Central\InboundMessage;
 use InvalidArgumentException;
 
-class FinderProviderResponseDataFactory
+class FinderProviderResponseDataTransformer
 {
     /**
      * Create ProviderResponseData from Finder inbound message.
@@ -506,7 +517,7 @@ class FinderProviderResponseDataFactory
             'outcome' => data_get($payload, 'outcome'),
 
             'matches' => collect_get($payload, 'loas')
-                ->map(MatchDataFactory::fromFinderAutomatedMatch(...)),  // Delegate to MatchDataFactory
+                ->map(MatchDataTransformer::fromFinderAutomatedMatch(...)),
 
             'errors' => collect_get($payload, 'errors'),
             'rawPayload' => $payload,
@@ -521,7 +532,7 @@ class FinderProviderResponseDataFactory
 namespace App\Messages\Handlers;
 
 use App\Actions\Tenanted\Match\ProcessMatchAttemptProviderResponseAction;
-use App\Data\Factories\FinderProviderResponseDataFactory;
+use App\Data\Transformers\FinderProviderResponseDataTransformer;
 use App\Models\Central\InboundMessage;
 
 class FinderIncomingMatchEventsHandler
@@ -529,29 +540,29 @@ class FinderIncomingMatchEventsHandler
     public function __invoke(InboundMessage $message): void
     {
         resolve(ProcessMatchAttemptProviderResponseAction::class)(
-            FinderProviderResponseDataFactory::fromInboundMessage($message)
+            FinderProviderResponseDataTransformer::fromInboundMessage($message)
         );
     }
 }
 ```
 
-### Example 3: Nested Factory Composition
+### Example 3: Nested Transformer Composition
 
-**Scenario:** Parent factory delegates to child factories.
+**Scenario:** Parent transformer delegates to child transformers.
 
 ```php
 <?php
 
 declare(strict_types=1);
 
-namespace App\Data\Factories;
+namespace App\Data\Transformers;
 
 use App\Data\Suggestion\MatchSuggestionData;
 use App\Data\Suggestion\MatchSuggestionEmployerData;
 use App\Data\Suggestion\MatchSuggestionProviderData;
 use App\Models\Tenanted\Suggestion\Suggestion;
 
-class MatchSuggestionDataFactory
+class MatchSuggestionDataTransformer
 {
     public static function fromFinderSuggestion(Suggestion $suggestion): MatchSuggestionData
     {
@@ -585,7 +596,7 @@ class MatchSuggestionDataFactory
 }
 ```
 
-## Testing Factory Transformations
+## Testing Transformer Logic
 
 **[→ See testing.md for comprehensive testing guide](../../laravel-testing/references/testing.md)**
 
@@ -594,7 +605,7 @@ class MatchSuggestionDataFactory
 **Test complete transformation with snapshots:**
 
 ```php
-use App\Data\Factories\FinderProviderResponseDataFactory;
+use App\Data\Transformers\FinderProviderResponseDataTransformer;
 use App\Data\Match\ProviderResponseData;
 use App\Models\Central\InboundMessage;
 
@@ -603,7 +614,7 @@ test('transforms finder matched outcome to provider response data', function ():
         ->withFinderMessageOutcomeMatchedSingle()
         ->create(['id' => 1002]);
 
-    $data = FinderProviderResponseDataFactory::fromInboundMessage($message);
+    $data = FinderProviderResponseDataTransformer::fromInboundMessage($message);
 
     expect($data)
         ->toBeInstanceOf(ProviderResponseData::class)
@@ -615,7 +626,7 @@ test('transforms finder no match outcome to provider response data', function ()
         ->withFinderMessageOutcomeNoMatch()
         ->create(['id' => 1003]);
 
-    $data = FinderProviderResponseDataFactory::fromInboundMessage($message);
+    $data = FinderProviderResponseDataTransformer::fromInboundMessage($message);
 
     expect($data)
         ->toBeInstanceOf(ProviderResponseData::class)
@@ -643,27 +654,27 @@ test('maps finder field names to internal names', function (): void {
         ],
     ];
 
-    $data = MatchDataFactory::fromFinderAutomatedMatch($match);
+    $data = MatchDataTransformer::fromFinderAutomatedMatch($match);
 
     expect($data->addresses->first())
         ->city->toBe('London');  // Internal: 'city'
 });
 
 test('transforms stripe payment status to enum', function (): void {
-    expect(PaymentDataFactory::fromStripePaymentIntent(['status' => 'succeeded']))
+    expect(PaymentDataTransformer::fromStripePaymentIntent(['status' => 'succeeded']))
         ->status->toBe(PaymentStatus::Succeeded);
 
-    expect(PaymentDataFactory::fromStripePaymentIntent(['status' => 'failed']))
+    expect(PaymentDataTransformer::fromStripePaymentIntent(['status' => 'failed']))
         ->status->toBe(PaymentStatus::Failed);
 
-    expect(PaymentDataFactory::fromStripePaymentIntent(['status' => 'unknown_status']))
+    expect(PaymentDataTransformer::fromStripePaymentIntent(['status' => 'unknown_status']))
         ->status->toBe(PaymentStatus::Unknown);
 });
 ```
 
 ### Validation Testing
 
-**Test factory guards:**
+**Test transformer guards:**
 
 ```php
 use App\Exceptions\InvalidProviderResponseException;
@@ -672,39 +683,13 @@ test('throws exception when required data missing', function (): void {
     $message = InboundMessage::factory()
         ->create(['message' => ['payload' => []]]);  // Missing result
 
-    FinderProviderResponseDataFactory::fromInboundMessage($message);
+    FinderProviderResponseDataTransformer::fromInboundMessage($message);
 })->throws(InvalidProviderResponseException::class);
 ```
 
-## Factory vs Transformer
-
-**Different purposes, different locations:**
-
-| Aspect | Factory | Transformer |
-|--------|---------|-------------|
-| **Purpose** | External → Internal | Request → DTO |
-| **Location** | `app/Data/Factories/` | `app/Data/Transformers/` |
-| **Source** | APIs, Webhooks, Messages | Form Requests |
-| **Versioning** | By external system | By API version/layer |
-| **Testing** | Unit tests with snapshots | Validation tests |
-
-**Factory example:**
-```php
-// External system data → Domain DTO
-PaymentDataFactory::fromStripePaymentIntent($stripeData)
-```
-
-**Transformer example:**
-```php
-// HTTP Request → Domain DTO
-OrderDataTransformer::fromRequest($request)
-```
-
-**See [dtos.md](dtos.md#data-transformers) for transformer patterns.**
-
 ## Anti-Patterns
 
-### ❌ Inline Transformation in Actions
+### Inline Transformation in Actions
 
 ```php
 // BAD - Transformation logic hidden in action
@@ -722,7 +707,7 @@ class ProcessPaymentAction
 }
 ```
 
-**✅ Use factory:**
+**Use transformer:**
 
 ```php
 // GOOD - Explicit, testable transformation
@@ -735,15 +720,15 @@ class ProcessPaymentAction
 }
 
 // In message handler or controller
-$paymentData = PaymentDataFactory::fromStripePaymentIntent($stripeData);
+$paymentData = PaymentDataTransformer::fromStripePaymentIntent($stripeData);
 $action($paymentData);
 ```
 
-### ❌ Factory That's Too Generic
+### Transformer That's Too Generic
 
 ```php
-// BAD - Generic factory loses type safety
-class DataFactory
+// BAD - Generic transformer loses type safety
+class DataTransformer
 {
     public static function make(string $type, array $data): Data
     {
@@ -756,19 +741,19 @@ class DataFactory
 }
 ```
 
-**✅ Dedicated factories:**
+**Dedicated transformers:**
 
 ```php
-// GOOD - Specific, type-safe factories
-OrderDataFactory::fromStripeOrder($data)
-UserDataFactory::fromAuth0User($data)
+// GOOD - Specific, type-safe transformers
+OrderDataTransformer::fromStripeOrder($data)
+UserDataTransformer::fromAuth0User($data)
 ```
 
-### ❌ Factory With Business Logic
+### Transformer With Business Logic
 
 ```php
-// BAD - Factory doing more than transformation
-class OrderDataFactory
+// BAD - Transformer doing more than transformation
+class OrderDataTransformer
 {
     public static function fromStripeOrder(array $order): OrderData
     {
@@ -784,11 +769,11 @@ class OrderDataFactory
 }
 ```
 
-**✅ Transform only:**
+**Transform only:**
 
 ```php
 // GOOD - Pure transformation
-class OrderDataFactory
+class OrderDataTransformer
 {
     public static function fromStripeOrder(array $order): OrderData
     {
@@ -840,20 +825,20 @@ function collect_get(array $array, string $key): Collection
     return collect(data_get($array, $key, default: []));
 }
 
-// Usage in factories
+// Usage in transformers
 collect_get($payload, 'items')
     ->map(fn ($item) => ItemData::from($item))
 ```
 
 ## Summary
 
-**Use DTO factories when:**
+**Use DTO transformers when:**
 - Integrating external systems with different schemas
 - Multiple sources map to same internal DTO
 - Complex transformation logic warrants testing
 - Field mapping is non-trivial (enums, dates, nested objects)
 
-**Factory method naming:**
+**Transformer method naming:**
 - `from{SystemName}{DataType}` - Clear source indication
 - Static methods - No instantiation needed
 - Well-named - Self-documenting transformation intent
@@ -870,20 +855,19 @@ collect_get($payload, 'items')
 - Field-level tests for specific mappings
 - Validation tests for guards
 
-**Remember:** Factories transform, transformers map, actions execute. Keep concerns separate.
+**Remember:** Transformers transform domain data, test factories generate test data, actions execute business logic. Keep concerns separate.
 
 ## Setup Checklist
 
 **[→ View all implementation files](./)**
 
-To implement DTO factories in your project:
+To implement DTO test factories in your project:
 
-1. ✅ **Base Data class** - **[Copy Data.php](./Data.php)** to `app/Data/Data.php`
-2. ✅ **Trait** - **[Copy HasTestFactory.php](./HasTestFactory.php)** to `app/Data/Concerns/HasTestFactory.php`
-3. ✅ **Base factory** - **[Copy DataTestFactory.php](./DataTestFactory.php)** to `database/factories/Data/DataTestFactory.php`
-4. ✅ **Factory resolver** - **[Copy AppServiceProvider.php method](./AppServiceProvider.php)** to your `AppServiceProvider::register()`
-5. ✅ **Helper** - **[Copy helpers.php](./helpers.php)** to `app/helpers.php` (ensure it's autoloaded in `composer.json`)
-6. ✅ **Examples** - **[View AddressDataFactory.php](./AddressDataFactory.php)** and **[TraceDataFactory.php](./TraceDataFactory.php)** for patterns
+1. **Base Data class** - **[Copy Data.php](./Data.php)** to `app/Data/Data.php`
+2. **Trait** - **[Copy HasTestFactory.php](./HasTestFactory.php)** to `app/Data/Concerns/HasTestFactory.php`
+3. **Base factory** - **[Copy DataTestFactory.php](./DataTestFactory.php)** to `database/factories/Data/DataTestFactory.php`
+4. **Factory resolver** - **[Copy AppServiceProvider.php method](./AppServiceProvider.php)** to your `AppServiceProvider::register()`
+5. **Helper** - **[Copy helpers.php](./helpers.php)** to `app/helpers.php` (ensure it's autoloaded in `composer.json`)
 
 **Autoload helpers in composer.json:**
 ```json
