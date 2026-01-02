@@ -20,6 +20,121 @@ DTOs provide:
 - **Validation** integration
 - **Transformation** from requests to domain objects
 
+## Spatie Laravel Data Package
+
+This project uses [Spatie Laravel Data](https://spatie.be/docs/laravel-data). Refer to the official documentation for comprehensive package features. This guide covers project-specific patterns and preferences.
+
+### Preferred: Use `::from()` with Arrays
+
+**Always prefer the `::from()` static method** with an array where keys match constructor property names. Let the package handle casting based on property types.
+
+```php
+// ✅ PREFERRED - Let the package cast automatically
+$data = CreateOrderData::from([
+    'customerEmail' => $request->input('customer_email'),
+    'deliveryDate' => $request->input('delivery_date'),  // String → CarbonImmutable
+    'status' => $request->input('status'),               // String → OrderStatus enum
+    'items' => $request->collect('items'),               // Array → Collection<OrderItemData>
+]);
+
+// ❌ AVOID - Manual casting in calling code
+$data = new CreateOrderData(
+    customerEmail: $request->input('customer_email'),
+    deliveryDate: CarbonImmutable::parse($request->input('delivery_date')),
+    status: OrderStatus::from($request->input('status')),
+    items: OrderItemData::collect($request->input('items')),
+);
+```
+
+**Why prefer `::from()`:**
+- Package handles type casting automatically based on constructor property types
+- Cleaner calling code without manual casting
+- Consistent transformation behavior
+- Leverages the full power of the package
+
+**When `new` is acceptable:**
+- In test factories where you control all values
+- When values are already the correct type
+- In formatters inside the DTO constructor
+
+### Avoid: Case Mapper Attributes
+
+**Do not use `#[MapInputName]` or case mapper attributes.** Instead, map field names explicitly in the array passed to `::from()`.
+
+```php
+// ❌ AVOID - Case mapper attributes on the class
+#[MapInputName(SnakeCaseMapper::class)]
+class CreateOrderData extends Data
+{
+    public function __construct(
+        public string $customerEmail,    // Auto-maps from 'customer_email'
+        public string $deliveryDate,
+    ) {}
+}
+
+// ✅ PREFERRED - Explicit mapping in calling code
+class OrderDataTransformer
+{
+    public static function fromRequest(CreateOrderRequest $request): CreateOrderData
+    {
+        return CreateOrderData::from([
+            'customerEmail' => $request->input('customer_email'),
+            'deliveryDate' => $request->input('delivery_date'),
+        ]);
+    }
+}
+```
+
+**Why avoid case mappers:**
+- Explicit mapping is clearer and more maintainable
+- Different API versions may have different field names
+- Transformers provide a single place to see all mappings
+- Avoids magic behavior that's hard to trace
+
+### Date Casting is Automatic
+
+The package automatically casts date strings to `Carbon` or `CarbonImmutable` based on property types. **Configure the expected date format in the package config** rather than parsing manually.
+
+```php
+// config/data.php
+return [
+    'date_format' => 'Y-m-d H:i:s',  // Or ISO 8601: 'Y-m-d\TH:i:s.u\Z'
+];
+```
+
+```php
+class OrderData extends Data
+{
+    public function __construct(
+        public CarbonImmutable $createdAt,   // Automatically cast from string
+        public ?CarbonImmutable $shippedAt,  // Nullable dates work too
+    ) {}
+}
+
+// ✅ Just pass the string - package handles casting
+$data = OrderData::from([
+    'createdAt' => '2024-01-15 10:30:00',
+    'shippedAt' => null,
+]);
+```
+
+### Complex Transformations: Use Factories
+
+For complex applications with intricate data transformations, create dedicated factory classes with static methods. See **[dto-factories.md](dto-factories.md)** for complete patterns.
+
+```php
+// For external system data with complex mapping
+$data = PaymentDataFactory::fromStripePaymentIntent($webhook['data']);
+
+// For request data with version-specific field names
+$data = OrderDataTransformer::fromRequest($request);
+```
+
+**Hierarchy of preference:**
+1. `Data::from($array)` - Simple cases, direct mapping
+2. `Transformer::fromRequest()` - Request-specific field mapping
+3. `Factory::fromExternalSystem()` - Complex external data transformation
+
 ## Using Spatie Laravel Data
 
 All DTOs extend `Spatie\LaravelData\Data` through a custom base class.
@@ -274,13 +389,10 @@ class OrderDataTransformer
         return CreateOrderData::from([
             'customerEmail' => $request->input('customer_email'),
             'notes' => $request->input('notes'),
-            'status' => OrderStatus::from($request->input('status')),
-            'items' => OrderItemData::collect(
-                $request->input('items'),
-                OrderItemData::class
-            ),
-            'shippingAddress' => ShippingAddressData::from($request->input('shipping')),
-            'billingAddress' => BillingAddressData::from($request->input('billing')),
+            'status' => $request->input('status'),
+            'items' => $request->input('items'),
+            'shippingAddress' => $request->input('shipping'),
+            'billingAddress' => $request->input('billing'),
         ]);
     }
 }
@@ -302,44 +414,20 @@ class OrderDataTransformer
 {
     public static function fromRequest(CreateOrderRequest $request): CreateOrderData
     {
-        // API v1 might have different field names
+        // API v1 has different field names - map them here
         return CreateOrderData::from([
-            'customerEmail' => $request->input('email'), // Different field name
+            'customerEmail' => $request->input('email'),
             'notes' => $request->input('notes'),
-            'status' => OrderStatus::from($request->input('order_status')),
-            'items' => OrderItemData::collect(
-                $request->input('line_items'), // Different field name
-                OrderItemData::class
-            ),
-            'shippingAddress' => ShippingAddressData::from($request->input('shipping_details')),
-            'billingAddress' => BillingAddressData::from($request->input('billing_details')),
+            'status' => $request->input('order_status'),
+            'items' => $request->input('line_items'),
+            'shippingAddress' => $request->input('shipping_details'),
+            'billingAddress' => $request->input('billing_details'),
         ]);
     }
 }
 ```
 
 **Key principle:** Each API version and web layer has its own transformer to handle different request structures.
-
-## Input Name Mapping (Optional)
-
-If your project requires mapping snake_case API inputs to camelCase properties:
-
-```php
-use Spatie\LaravelData\Attributes\MapInputName;
-use Spatie\LaravelData\Mappers\SnakeCaseMapper;
-
-#[MapInputName(SnakeCaseMapper::class)]
-class CreateOrderData extends Data
-{
-    public function __construct(
-        public string $firstName,       // Maps from 'first_name'
-        public string $lastName,        // Maps from 'last_name'
-        public string $emailAddress,    // Maps from 'email_address'
-    ) {}
-}
-```
-
-**However, prefer using Data Transformers** for explicit control over input mapping.
 
 ## DTO Organization
 
