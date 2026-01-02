@@ -21,7 +21,7 @@ Data Transfer Objects: never pass primitives, always use structured DTOs with Sp
 - Static factory methods with typed parameters
 - Field mapping and enum transformations
 - Nested DTOs
-- Test factories for generating test data
+- Safe data access patterns
 
 ## Pattern
 
