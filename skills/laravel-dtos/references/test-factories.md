@@ -5,7 +5,7 @@
 **Related guides:**
 - [SKILL.md](../SKILL.md) - Core DTO patterns and structure
 - [dto-transformers.md](dto-transformers.md) - Transformers for domain logic (different purpose)
-- [testing.md](../../laravel-testing/references/testing.md) - Using test factories in tests
+- [Testing](../../laravel-testing/SKILL.md) - Using test factories in tests
 
 ## Test Factories vs Transformers
 

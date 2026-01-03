@@ -4,11 +4,11 @@ Quick reference examples showing the core patterns in action.
 
 **Related guides:**
 For detailed implementation guides, see:
-- [actions.md](../../laravel-actions/references/actions.md) - Action patterns
+- [Actions](../../laravel-actions/SKILL.md) - Action patterns
 - [DTOs](../../laravel-dtos/SKILL.md) - DTO patterns
 - [Controllers](../../laravel-controllers/SKILL.md) - Controller patterns
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation patterns
-- [testing.md](../../laravel-testing/references/testing.md) - Testing guide with triple-A pattern, mocking, and factories
+- [Testing](../../laravel-testing/SKILL.md) - Testing guide with triple-A pattern, mocking, and factories
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Comprehensive validation testing
 - [Models](../../laravel-models/SKILL.md) - Model and custom builder patterns
 

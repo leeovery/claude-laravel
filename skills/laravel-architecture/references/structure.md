@@ -3,11 +3,11 @@
 Complete project organization following action-oriented architecture.
 
 **Related guides:**
-- [actions.md](../../laravel-actions/references/actions.md) - Action pattern and organization
+- [Actions](../../laravel-actions/SKILL.md) - Action pattern and organization
 - [DTOs](../../laravel-dtos/SKILL.md) - DTO structure and transformers
 - [Controllers](../../laravel-controllers/SKILL.md) - HTTP layer organization
 - [Models](../../laravel-models/SKILL.md) - Model structure and custom builders
-- [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Multi-tenant directory organization
+- [Multi-tenancy](../../laravel-multi-tenancy/SKILL.md) - Multi-tenant directory organization
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Test datasets for validation testing
 
 ## Full Structure Created

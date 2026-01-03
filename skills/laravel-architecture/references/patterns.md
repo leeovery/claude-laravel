@@ -19,7 +19,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Verb}{Entity}Action`
 
-**See [actions.md](../../laravel-actions/references/actions.md) for complete guide**
+**See [Actions](../../laravel-actions/SKILL.md) for complete guide**
 
 ### Data Transfer Objects
 - Extend base `Data` class (Spatie)
@@ -50,7 +50,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Controllers:** HTTP only - See [Controllers](../../laravel-controllers/SKILL.md)
 **Jobs/Listeners:** Delegate to actions
-**Actions:** Domain logic - See [actions.md](../../laravel-actions/references/actions.md)
+**Actions:** Domain logic - See [Actions](../../laravel-actions/SKILL.md)
 **Validation:** Form Requests - See [form-requests.md](../../laravel-validation/references/form-requests.md)
 
 ### Custom Query Builders

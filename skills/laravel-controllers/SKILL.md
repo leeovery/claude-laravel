@@ -8,7 +8,7 @@ description: Thin HTTP layer controllers. Controllers contain zero domain logic,
 Controllers are **extremely thin**. They handle **HTTP concerns only** and contain **zero domain logic**.
 
 **Related guides:**
-- [actions.md](../laravel-actions/references/actions.md) - Actions contain the domain logic
+- [Actions](../laravel-actions/SKILL.md) - Actions contain the domain logic
 - [form-requests.md](../laravel-validation/references/form-requests.md) - Validation layer
 - [DTOs](../laravel-dtos/SKILL.md) - DTOs for data transfer
 - [structure.md](../laravel-architecture/references/structure.md) - Web vs API organization

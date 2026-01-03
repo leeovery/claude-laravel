@@ -8,14 +8,14 @@ description: Eloquent model patterns and database layer. Use when working with m
 Models represent database tables and domain entities.
 
 **Related guides:**
-- [query-builders.md](references/query-builders.md) - Custom query builders (not scopes)
-- [actions.md](../laravel-actions/references/actions.md) - Actions contain business logic
+- [Query Builders](../laravel-query-builders/SKILL.md) - Custom query builders (not scopes)
+- [Actions](../laravel-actions/SKILL.md) - Actions contain business logic
 - [DTOs](../laravel-dtos/SKILL.md) - Casting model JSON columns to DTOs
 
 ## Philosophy
 
 Models should:
-- Use **custom query builders** (not local scopes) - see [query-builders.md](references/query-builders.md)
+- Use **custom query builders** (not local scopes) - see [Query Builders](../laravel-query-builders/SKILL.md)
 - Define relationships
 - Define casts
 - Contain simple accessors/mutators

@@ -28,7 +28,7 @@ Guidance for choosing the right architectural pattern for your use case.
 - HTTP concerns (use middleware)
 - Presentation logic (use resources)
 
-**See [actions.md](../../laravel-actions/references/actions.md) for complete implementation guide**
+**See [Actions](../../laravel-actions/SKILL.md) for complete implementation guide**
 
 ### Data Transfer Objects (DTOs)
 
@@ -187,7 +187,7 @@ Services/
 - External calls
 - Transactions
 
-**See [actions.md](../../laravel-actions/references/actions.md) for action patterns**
+**See [Actions](../../laravel-actions/SKILL.md) for action patterns**
 
 ### Job vs Listener vs Action
 

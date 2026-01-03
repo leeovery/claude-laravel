@@ -484,7 +484,7 @@ use Illuminate\Validation\Rules\Password;
 
 **Related guides:**
 - [validation-testing.md](validation-testing.md) - **Complete guide to validation testing** with RequestDataProviderItem and datasets
-- [quality.md](../../laravel-quality/references/quality.md) - Testing standards and practices
+- [Quality](../../laravel-quality/SKILL.md) - Testing standards and practices
 
 ### Basic Testing
 
