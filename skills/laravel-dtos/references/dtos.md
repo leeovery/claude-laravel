@@ -391,116 +391,17 @@ $metadata = $order->metadata;  // Returns OrderMetadataData instance
 
 ### 9. Transformers
 
-**Transform external system data** into internal DTOs using dedicated transformer classes with static factory methods.
+**Transform external data into internal DTOs** using dedicated transformer classes. Use for external systems (APIs, webhooks), complex field mappings, or when transformation logic needs testing.
 
 **[→ Complete guide: dto-transformers.md](dto-transformers.md)**
 
-**Quick example:**
-
 ```php
-<?php
+// External system data
+$data = PaymentDataTransformer::fromStripePaymentIntent($webhook['data']);
 
-declare(strict_types=1);
-
-namespace App\Data\Transformers;
-
-use App\Data\PaymentData;
-use App\Enums\PaymentStatus;
-use Carbon\CarbonImmutable;
-
-class PaymentDataTransformer
-{
-    public static function fromStripePaymentIntent(array $paymentIntent): PaymentData
-    {
-        return PaymentData::from([
-            'id' => data_get($paymentIntent, 'id'),
-            'amount' => data_get($paymentIntent, 'amount'),
-            'currency' => data_get($paymentIntent, 'currency'),
-            'status' => match (data_get($paymentIntent, 'status')) {
-                'succeeded' => PaymentStatus::Succeeded,
-                'pending' => PaymentStatus::Pending,
-                'failed' => PaymentStatus::Failed,
-                default => PaymentStatus::Unknown,
-            },
-            'createdAt' => CarbonImmutable::createFromTimestamp(
-                data_get($paymentIntent, 'created')
-            ),
-            'rawData' => $paymentIntent,  // Preserve original
-        ]);
-    }
-}
+// Request with version-specific field names
+$data = OrderDataTransformer::fromRequest($request);
 ```
-
-**Use transformers when:**
-- Integrating external systems (APIs, webhooks, message queues)
-- Multiple data sources map to same DTO
-- Complex field transformations with business logic
-- Transformation logic needs dedicated testing
-
-**See [dto-transformers.md](dto-transformers.md) for complete patterns, testing strategies, and real-world examples.**
-
-## Data Transformers
-
-**Transform Form Request data to DTOs.** Transformers are specific to each layer/version since request structures differ between Web, API v1, API v2, etc.
-
-### Web Layer Transformer
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Data\Transformers\Web;
-
-use App\Data\CreateOrderData;
-use App\Http\Web\Requests\CreateOrderRequest;
-
-class OrderDataTransformer
-{
-    public static function fromRequest(CreateOrderRequest $request): CreateOrderData
-    {
-        return CreateOrderData::from([
-            'customerEmail' => $request->input('customer_email'),
-            'notes' => $request->input('notes'),
-            'status' => $request->input('status'),
-            'items' => $request->input('items'),
-            'shippingAddress' => $request->input('shipping'),
-            'billingAddress' => $request->input('billing'),
-        ]);
-    }
-}
-```
-
-### API v1 Transformer
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Data\Transformers\Api\V1;
-
-use App\Data\CreateOrderData;
-use App\Http\Api\V1\Requests\CreateOrderRequest;
-
-class OrderDataTransformer
-{
-    public static function fromRequest(CreateOrderRequest $request): CreateOrderData
-    {
-        // API v1 has different field names - map them here
-        return CreateOrderData::from([
-            'customerEmail' => $request->input('email'),
-            'notes' => $request->input('notes'),
-            'status' => $request->input('order_status'),
-            'items' => $request->input('line_items'),
-            'shippingAddress' => $request->input('shipping_details'),
-            'billingAddress' => $request->input('billing_details'),
-        ]);
-    }
-}
-```
-
-**Key principle:** Each API version and web layer has its own transformer to handle different request structures.
 
 ## DTO Organization
 
