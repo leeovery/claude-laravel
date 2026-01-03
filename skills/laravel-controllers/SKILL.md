@@ -18,9 +18,8 @@ Controllers are **extremely thin**. They handle **HTTP concerns only** and conta
 **Controllers should ONLY:**
 1. Type-hint dependencies
 2. Validate (via Form Requests)
-3. Transform request to DTO (via Transformers)
-4. Call actions
-5. Return responses (resources, redirects, views)
+3. Call actions
+4. Return responses (resources, redirects, views)
 
 **Controllers should NEVER:**
 - Contain domain logic
@@ -471,8 +470,7 @@ public function index(OrderIndexQuery $query): AnonymousResourceCollection
 **Controllers are HTTP adapters:**
 1. Receive HTTP request
 2. Validate via Form Request
-3. Transform to DTO via Transformer
-4. Call Action with DTO
-5. Return HTTP response via Resource
+3. Call Action (with DTO if needed)
+4. Return HTTP response via Resource
 
 **Every line of domain logic belongs in an Action, not a Controller.**
