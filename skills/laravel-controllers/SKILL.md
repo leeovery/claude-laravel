@@ -8,6 +8,7 @@ description: Thin HTTP layer controllers. Controllers contain zero domain logic,
 Controllers are **extremely thin**. They handle **HTTP concerns only** and contain **zero domain logic**.
 
 **Related guides:**
+- [query-objects.md](references/query-objects.md) - Query objects for API filtering/sorting
 - [Actions](../laravel-actions/SKILL.md) - Actions contain the domain logic
 - [form-requests.md](../laravel-validation/references/form-requests.md) - Validation layer
 - [DTOs](../laravel-dtos/SKILL.md) - DTOs for data transfer
@@ -240,54 +241,7 @@ class OrdersController extends Controller
 
 ## Query Objects
 
-**Extract complex queries** to dedicated classes:
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Http\Web\Queries;
-
-use App\Builders\OrderBuilder;
-use App\Models\Order;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\AllowedSort;
-use Spatie\QueryBuilder\QueryBuilder;
-
-class OrderIndexQuery extends QueryBuilder
-{
-    public function __construct()
-    {
-        $query = Order::query()
-            ->with(['customer', 'items']);
-
-        parent::__construct($query);
-
-        $this
-            ->defaultSort('-created_at')
-            ->allowedSorts([
-                AllowedSort::field('id'),
-                AllowedSort::field('total'),
-                AllowedSort::field('created_at'),
-            ])
-            ->allowedFilters([
-                AllowedFilter::exact('status'),
-                AllowedFilter::callback('search', function (OrderBuilder $query, $value): void {
-                    $query->where(function (OrderBuilder $query) use ($value): void {
-                        $query
-                            ->where('id', $value)
-                            ->orWhere('order_number', $value)
-                            ->orWhereHas('customer', fn ($q) => $q->whereLike('email', "%{$value}%"));
-                    });
-                }),
-            ])
-            ->allowedIncludes(['customer', 'items', 'shipments']);
-    }
-}
-```
-
-**Usage in controller:**
+For API filtering, sorting, and includes, use **Query Objects** with Spatie Query Builder:
 
 ```php
 public function index(OrderIndexQuery $query): AnonymousResourceCollection
@@ -296,11 +250,7 @@ public function index(OrderIndexQuery $query): AnonymousResourceCollection
 }
 ```
 
-**Benefits:**
-- Query logic separated from controller
-- Reusable across endpoints
-- Easy to test
-- Type-safe with custom builders
+**[→ Complete query objects guide: query-objects.md](references/query-objects.md)**
 
 ## Authorization
 
