@@ -32,7 +32,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Entity}Data` or `{Action}{Entity}Data`
 
-**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete guide**
+**See [DTOs](../../laravel-dtos/SKILL.md) for complete guide**
 
 ### Strict Typing
 - Every file starts with `declare(strict_types=1)`

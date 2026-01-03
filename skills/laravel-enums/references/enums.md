@@ -5,7 +5,7 @@ Enums provide type-safe, finite sets of values.
 **Related guides:**
 - [state-management.md](../../laravel-state-machines/references/state-management.md) - For complex state transitions
 - [models.md](../../laravel-models/references/models.md) - Model casts to enums
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTOs with enum properties
+- [DTOs](../../laravel-dtos/SKILL.md) - DTOs with enum properties
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Enum validation
 
 ## Always Use Backed Enums

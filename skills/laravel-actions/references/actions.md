@@ -3,7 +3,7 @@
 Actions are the **heart of your domain logic**. Every business operation lives in an action.
 
 **Related guides:**
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTOs for passing data to actions
+- [DTOs](../../laravel-dtos/SKILL.md) - DTOs for passing data to actions
 - [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Factory-created DTOs consumed by actions
 - [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers delegate to actions
 - [models.md](../../laravel-models/references/models.md) - Models accessed by actions

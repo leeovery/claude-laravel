@@ -4,7 +4,7 @@ Extract **reusable patterns** into packages when they provide value across multi
 
 **Related guides:**
 - [actions.md](../../laravel-actions/references/actions.md) - Action pattern for package base classes
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO patterns for package data structures
+- [DTOs](../../laravel-dtos/SKILL.md) - DTO patterns for package data structures
 - [service-providers.md](../../laravel-providers/references/service-providers.md) - Service provider structure for packages
 - [code-style.md](../../laravel-quality/references/code-style.md) - Code style for package consistency
 

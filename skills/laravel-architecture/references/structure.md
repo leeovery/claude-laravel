@@ -4,7 +4,7 @@ Complete project organization following action-oriented architecture.
 
 **Related guides:**
 - [actions.md](../../laravel-actions/references/actions.md) - Action pattern and organization
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO structure and transformers
+- [DTOs](../../laravel-dtos/SKILL.md) - DTO structure and transformers
 - [controllers.md](../../laravel-controllers/references/controllers.md) - HTTP layer organization
 - [models.md](../../laravel-models/references/models.md) - Model structure and custom builders
 - [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Multi-tenant directory organization
@@ -21,7 +21,7 @@ app/
 ├── Booters/              # Bootstrap configuration classes
 ├── Builders/             # Custom Eloquent query builders - See models.md
 │   └── Concerns/         # Reusable builder traits
-├── Data/                 # Data Transfer Objects (Spatie Data) - See dtos.md
+├── Data/                 # Data Transfer Objects (Spatie Data) - See laravel-dtos SKILL.md
 │   ├── Concerns/         # DTO traits (e.g., HasTestFactory)
 │   ├── Factories/        # DTO test factories
 │   ├── Formatters/       # Value formatting utilities

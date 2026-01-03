@@ -4,7 +4,7 @@
 
 **Related guides:**
 - [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers use form requests
-- [dtos.md](../../laravel-dtos/references/dtos.md) - Transformers convert validated requests to DTOs
+- [DTOs](../../laravel-dtos/SKILL.md) - Transformers convert validated requests to DTOs
 - [validation-testing.md](validation-testing.md) - Testing form request validation
 - [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure
 

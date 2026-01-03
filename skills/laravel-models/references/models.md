@@ -4,7 +4,7 @@ Models represent database tables and domain entities.
 
 **Related guides:**
 - [actions.md](../../laravel-actions/references/actions.md) - Actions contain business logic that uses models
-- [dtos.md](../../laravel-dtos/references/dtos.md) - Casting model JSON columns to DTOs
+- [DTOs](../../laravel-dtos/SKILL.md) - Casting model JSON columns to DTOs
 - [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Central vs Tenanted model organization
 
 ## Philosophy

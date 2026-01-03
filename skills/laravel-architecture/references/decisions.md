@@ -49,7 +49,7 @@ Guidance for choosing the right architectural pattern for your use case.
 - Arrays with string keys
 - Passing request objects to actions
 
-**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete implementation guide**
+**See [DTOs](../../laravel-dtos/SKILL.md) for complete implementation guide**
 
 ### Custom Query Builders
 

@@ -3,7 +3,7 @@
 **Transformer classes transform external system data into internal DTOs.** Use when you need explicit, testable mapping logic between different data structures.
 
 **Related guides:**
-- [dtos.md](dtos.md) - Core DTO patterns
+- [SKILL.md](../SKILL.md) - Core DTO patterns
 - [test-factories.md](test-factories.md) - Test factories for tests
 - [helpers.php](./helpers.php) - `collect_get()` helper implementation
 

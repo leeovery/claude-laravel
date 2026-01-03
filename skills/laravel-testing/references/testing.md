@@ -10,7 +10,7 @@ Comprehensive guide to testing Laravel applications following the action-oriente
 - [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Testing factory transformation logic
 - [services.md](../../laravel-services/references/services.md) - Service layer with null drivers for testing
 - [quality.md](../../laravel-quality/references/quality.md) - Architecture tests and quality enforcement
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO test factories
+- [DTOs](../../laravel-dtos/SKILL.md) - DTO test factories
 
 ## Philosophy
 
@@ -414,7 +414,7 @@ it('creates an order', function () {
 });
 ```
 
-**See [dtos.md](../../laravel-dtos/references/dtos.md) for more on DTO test factories.**
+**See [DTOs](../../laravel-dtos/SKILL.md) for more on DTO test factories.**
 
 ### Declarative Factory Methods
 
@@ -1275,7 +1275,7 @@ assertDatabaseCount('orders', 1);
 - **[quality.md](../../laravel-quality/references/quality.md)** - Architecture tests, PHPStan, Pint, CI/CD quality checks
 - **[services.md](../../laravel-services/references/services.md)** - Service layer pattern with null drivers for testing external APIs
 - **[actions.md](../../laravel-actions/references/actions.md)** - Action pattern structure and basic testing examples
-- **[dtos.md](../../laravel-dtos/references/dtos.md)** - DTO structure and test factory implementation
+- **[DTOs](../../laravel-dtos/SKILL.md)** - DTO structure and test factory implementation
 
 ---
 

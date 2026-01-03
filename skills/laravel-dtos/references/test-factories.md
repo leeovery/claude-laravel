@@ -3,7 +3,7 @@
 **Test factories create hydrated DTOs for tests.** They live in `database/factories/Data/` and use the `HasTestFactory` trait to enable `::testFactory()` on Data classes.
 
 **Related guides:**
-- [dtos.md](dtos.md) - Core DTO patterns and structure
+- [SKILL.md](../SKILL.md) - Core DTO patterns and structure
 - [dto-transformers.md](dto-transformers.md) - Transformers for domain logic (different purpose)
 - [testing.md](../../laravel-testing/references/testing.md) - Using test factories in tests
 

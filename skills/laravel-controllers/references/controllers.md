@@ -5,7 +5,7 @@ Controllers are **extremely thin**. They handle **HTTP concerns only** and conta
 **Related guides:**
 - [actions.md](../../laravel-actions/references/actions.md) - Actions contain the domain logic
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation layer
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTOs for data transfer
+- [DTOs](../../laravel-dtos/SKILL.md) - DTOs for data transfer
 - [structure.md](../../laravel-architecture/references/structure.md) - Web vs API organization
 - [testing.md](../../laravel-testing/references/testing.md) - Testing controllers with feature tests (HTTP layer testing)
 - [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure matching RESTful order
