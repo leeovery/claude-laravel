@@ -3,8 +3,8 @@
 **Always use Form Requests** for validation. Form Requests encapsulate validation logic and keep controllers clean.
 
 **Related guides:**
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers use form requests
-- [dtos.md](../../laravel-dtos/references/dtos.md) - Transformers convert validated requests to DTOs
+- [Controllers](../../laravel-controllers/SKILL.md) - Controllers use form requests
+- [DTOs](../../laravel-dtos/SKILL.md) - Transformers convert validated requests to DTOs
 - [validation-testing.md](validation-testing.md) - Testing form request validation
 - [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure
 
@@ -484,7 +484,7 @@ use Illuminate\Validation\Rules\Password;
 
 **Related guides:**
 - [validation-testing.md](validation-testing.md) - **Complete guide to validation testing** with RequestDataProviderItem and datasets
-- [quality.md](../../laravel-quality/references/quality.md) - Testing standards and practices
+- [Quality](../../laravel-quality/SKILL.md) - Testing standards and practices
 
 ### Basic Testing
 

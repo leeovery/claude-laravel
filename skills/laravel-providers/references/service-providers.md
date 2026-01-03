@@ -111,7 +111,7 @@ database/
     └── OrderFactory.php
 ```
 
-**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete factory examples.**
+**See [DTOs](../../laravel-dtos/SKILL.md) for complete factory examples.**
 
 ## Route Model Bindings
 
@@ -529,5 +529,5 @@ private function configure(): void { }
 - Be overly complex (split into multiple providers if needed)
 
 **See also:**
-- [models.md](../../laravel-models/references/models.md) - Model unguard pattern
-- [dtos.md](../../laravel-dtos/references/dtos.md) - Data factory setup
+- [Models](../../laravel-models/SKILL.md) - Model unguard pattern
+- [DTOs](../../laravel-dtos/SKILL.md) - Data factory setup

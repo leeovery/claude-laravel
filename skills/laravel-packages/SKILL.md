@@ -7,20 +7,10 @@ description: Package development and extraction of reusable code. Use when worki
 
 Package development: extracting reusable patterns for use across projects.
 
-## Core Concepts
-
-**[package-extraction.md](references/package-extraction.md)** - Package extraction:
-- When to extract (three project rule)
-- Package structure and organization
-- Service provider patterns
-- Versioning with semantic versioning
-- Distribution (private vs public)
-- Testing packages
-
-**[packages.md](references/packages.md)** - Package ecosystem:
-- Core packages (Spatie Data, Model States, Query Builder, Saloon, Pest)
-- When to use each package
-- Integration patterns
+**Related guides:**
+- [package-extraction.md](references/package-extraction.md) - Extracting code into packages
+- [DTOs](../laravel-dtos/SKILL.md) - Using Spatie Laravel Data
+- [Models](../laravel-models/SKILL.md) - Using Spatie Model States and Query Builder
 
 ## When to Extract
 
@@ -30,7 +20,9 @@ Extract to package when:
 3. Pattern has clear boundaries
 4. Maintenance cost justified
 
-## Pattern
+**[→ Complete extraction guide: package-extraction.md](references/package-extraction.md)**
+
+## Package Structure
 
 ```
 my-package/
@@ -45,3 +37,86 @@ my-package/
 ```
 
 Use semantic versioning. Test packages independently. Document clearly.
+
+## Core Packages (Always)
+
+### Spatie Laravel Data
+```bash
+composer require spatie/laravel-data
+```
+- DTOs with casting, validation, transformers
+- Test factory support
+
+### Spatie Model States
+```bash
+composer require spatie/laravel-model-states
+```
+- State machine pattern
+- State transitions with dedicated classes
+
+### Spatie Query Builder
+```bash
+composer require spatie/laravel-query-builder
+```
+- Filter, sort, include relations via query strings
+- API-friendly querying
+
+### Saloon
+```bash
+composer require saloonphp/saloon saloonphp/laravel-plugin
+```
+- Elegant API client builder
+- Testable external service integrations
+
+### Pest
+```bash
+composer require pestphp/pest pestphp/pest-plugin-laravel --dev
+```
+- Expressive testing framework
+- Architecture tests
+
+## Optional Packages
+
+### Laravel Sanctum
+```bash
+composer require laravel/sanctum
+```
+**When:** API authentication needed
+
+### Stancl Tenancy
+```bash
+composer require stancl/tenancy
+```
+**When:** Multi-tenant application
+
+### Spatie Settings
+```bash
+composer require spatie/laravel-settings
+```
+**When:** Application-level settings needed
+
+## Installation Commands
+
+### Full Install
+```bash
+composer require \
+  spatie/laravel-data \
+  spatie/laravel-model-states \
+  spatie/laravel-query-builder \
+  saloonphp/saloon \
+  saloonphp/laravel-plugin
+
+composer require \
+  pestphp/pest \
+  pestphp/pest-plugin-laravel \
+  --dev
+
+./vendor/bin/pest --init
+```
+
+### Minimal Install
+```bash
+composer require spatie/laravel-data
+composer require pestphp/pest pestphp/pest-plugin-laravel --dev
+./vendor/bin/pest --init
+```

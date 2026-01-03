@@ -3,11 +3,11 @@
 Complete project organization following action-oriented architecture.
 
 **Related guides:**
-- [actions.md](../../laravel-actions/references/actions.md) - Action pattern and organization
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO structure and transformers
-- [controllers.md](../../laravel-controllers/references/controllers.md) - HTTP layer organization
-- [models.md](../../laravel-models/references/models.md) - Model structure and custom builders
-- [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Multi-tenant directory organization
+- [Actions](../../laravel-actions/SKILL.md) - Action pattern and organization
+- [DTOs](../../laravel-dtos/SKILL.md) - DTO structure and transformers
+- [Controllers](../../laravel-controllers/SKILL.md) - HTTP layer organization
+- [Models](../../laravel-models/SKILL.md) - Model structure and custom builders
+- [Multi-tenancy](../../laravel-multi-tenancy/SKILL.md) - Multi-tenant directory organization
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Test datasets for validation testing
 
 ## Full Structure Created
@@ -19,9 +19,9 @@ app/
 │   ├── User/
 │   └── Order/
 ├── Booters/              # Bootstrap configuration classes
-├── Builders/             # Custom Eloquent query builders - See models.md
+├── Builders/             # Custom Eloquent query builders - See laravel-models skill
 │   └── Concerns/         # Reusable builder traits
-├── Data/                 # Data Transfer Objects (Spatie Data) - See dtos.md
+├── Data/                 # Data Transfer Objects (Spatie Data) - See laravel-dtos SKILL.md
 │   ├── Concerns/         # DTO traits (e.g., HasTestFactory)
 │   ├── Factories/        # DTO test factories
 │   ├── Formatters/       # Value formatting utilities
@@ -34,12 +34,12 @@ app/
 ├── Exceptions/
 │   └── Concerns/
 ├── Http/
-│   ├── Web/              # Private API/Blade layer (not versioned) - See controllers.md
+│   ├── Web/              # Private API/Blade layer (not versioned) - See laravel-controllers skill
 │   │   ├── Controllers/
 │   │   ├── Queries/
 │   │   ├── Requests/    # Form Requests - See form-requests.md
 │   │   └── Resources/
-│   ├── Api/V1/           # Public API v1 (optional) - See controllers.md
+│   ├── Api/V1/           # Public API v1 (optional) - See laravel-controllers skill
 │   │   ├── Controllers/
 │   │   ├── Queries/
 │   │   ├── Requests/    # Form Requests - See form-requests.md

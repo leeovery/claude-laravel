@@ -405,4 +405,4 @@ it('throws 404 for soft-deleted order on public routes', function () {
 
 **See also:**
 - [service-providers.md](../../laravel-providers/references/service-providers.md) - AppServiceProvider setup
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Using bound models in controllers
+- [Controllers](../../laravel-controllers/SKILL.md) - Using bound models in controllers

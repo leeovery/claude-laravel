@@ -28,7 +28,7 @@ Guidance for choosing the right architectural pattern for your use case.
 - HTTP concerns (use middleware)
 - Presentation logic (use resources)
 
-**See [actions.md](../../laravel-actions/references/actions.md) for complete implementation guide**
+**See [Actions](../../laravel-actions/SKILL.md) for complete implementation guide**
 
 ### Data Transfer Objects (DTOs)
 
@@ -49,7 +49,7 @@ Guidance for choosing the right architectural pattern for your use case.
 - Arrays with string keys
 - Passing request objects to actions
 
-**See [dtos.md](../../laravel-dtos/references/dtos.md) for complete implementation guide**
+**See [DTOs](../../laravel-dtos/SKILL.md) for complete implementation guide**
 
 ### Custom Query Builders
 
@@ -70,7 +70,7 @@ Guidance for choosing the right architectural pattern for your use case.
 - Less IDE support
 - Harder to compose
 
-**See [models.md](../../laravel-models/references/models.md) for custom builder implementation**
+**See [Models](../../laravel-models/SKILL.md) for custom builder implementation**
 
 ### Query Objects (Spatie Query Builder)
 
@@ -179,7 +179,7 @@ Services/
 - Call action
 - Return response
 
-**See [controllers.md](../../laravel-controllers/references/controllers.md) for controller patterns**
+**See [Controllers](../../laravel-controllers/SKILL.md) for controller patterns**
 
 **Action (domain logic):**
 - Business rules
@@ -187,7 +187,7 @@ Services/
 - External calls
 - Transactions
 
-**See [actions.md](../../laravel-actions/references/actions.md) for action patterns**
+**See [Actions](../../laravel-actions/SKILL.md) for action patterns**
 
 ### Job vs Listener vs Action
 
@@ -233,7 +233,7 @@ Services/
 - Can change freely
 - Private contract
 
-**See [structure.md](structure.md) and [controllers.md](../../laravel-controllers/references/controllers.md) for routing details**
+**See [structure.md](structure.md) and [Controllers](../../laravel-controllers/SKILL.md) for routing details**
 
 ## Namespace Organization
 

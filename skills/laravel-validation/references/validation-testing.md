@@ -5,8 +5,8 @@
 **Related guides:**
 - [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test file structure and ordering conventions
 - [form-requests.md](form-requests.md) - Form request validation rules
-- [quality.md](../../laravel-quality/references/quality.md) - Testing standards and architecture tests
-- [testing.md](../../laravel-testing/references/testing.md) - Complete testing guide
+- [Quality](../../laravel-quality/SKILL.md) - Testing standards and architecture tests
+- [Testing](../../laravel-testing/SKILL.md) - Complete testing guide
 
 ## Philosophy
 

@@ -3,7 +3,7 @@
 Global helper functions provide convenience for common operations. **Use sparingly.**
 
 **Related guides:**
-- [actions.md](../../laravel-actions/references/actions.md) - Domain logic belongs in actions, not helpers
+- [Actions](../../laravel-actions/SKILL.md) - Domain logic belongs in actions, not helpers
 
 ## Structure
 

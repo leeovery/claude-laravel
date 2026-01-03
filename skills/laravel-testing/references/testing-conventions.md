@@ -4,7 +4,7 @@ Guide for structuring test files to match Laravel controller conventions with RE
 
 **Related guides:**
 - [testing.md](testing.md) - Complete testing guide with patterns and best practices
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller structure and RESTful method ordering
+- [Controllers](../../laravel-controllers/SKILL.md) - Controller structure and RESTful method ordering
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Form request validation testing
 
 ## When to Use This Structure
@@ -220,6 +220,6 @@ For integration tests with external APIs:
 
 **See also:**
 - [testing.md](testing.md) - Triple-A pattern, mocking, factories, testing actions
-- [controllers.md](../../laravel-controllers/references/controllers.md) - RESTful method ordering and conventions
+- [Controllers](../../laravel-controllers/SKILL.md) - RESTful method ordering and conventions
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Dataset-based validation testing
 - [routing-permissions.md](../../laravel-routing/references/routing-permissions.md) - Route-level authorization configuration
