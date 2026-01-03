@@ -116,15 +116,13 @@ Guidance for choosing the right architectural pattern for your use case.
 Services/
 └── Payment/
     ├── PaymentManager.php
-    ├── Connectors/       # Saloon
     ├── Drivers/          # Stripe, PayPal
-    ├── Contracts/
-    └── Requests/
+    └── Contracts/
 ```
 
 **Don't use for:**
 - Internal business logic (use actions)
-- Simple HTTP calls (use Saloon directly)
+- Simple HTTP calls (use Laravel's HTTP facade directly)
 
 ### Value Objects
 
@@ -239,7 +237,7 @@ Services/
 
 ## Namespace Organization
 
-**By feature (prefer):**
+**By feature:**
 ```
 Actions/
 ├── Order/
@@ -248,26 +246,19 @@ Actions/
 └── User/
 ```
 
-**By type (avoid):**
-```
-Actions/
-├── Create/
-│   ├── CreateOrderAction
-│   └── CreateUserAction
-```
-
 ## Testing Decisions
 
 **Feature tests for:**
 - HTTP endpoints
 - Complete workflows
 - Integration points
+- Anything touching the database
+- Code using framework infrastructure
 
 **Unit tests for:**
-- Actions (isolated)
-- DTOs (transformation)
-- Builders (query logic)
-- Value objects (behavior)
+- Isolated pure PHP classes with no external dependencies
+- Value objects (self-contained logic and behavior)
+- Utility classes with calculations or transformations
 
 **Don't test:**
 - Framework code
@@ -286,19 +277,6 @@ Actions/
 - Project-specific
 - Changing frequently
 - Coupled to domain
-
-## Multi-Tenancy Decisions
-
-**Database separation (prefer for isolation):**
-```
-Actions/
-├── Central/
-└── Tenanted/
-```
-
-**Single database (simpler):**
-- Add `tenant_id` to tables
-- Global scopes
 
 ## Enum vs Constant
 

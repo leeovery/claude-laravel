@@ -1,36 +1,77 @@
-# Code Examples
+# Request Flow Example
 
-Quick reference examples showing the core patterns in action.
+A complete vertical slice showing how a request flows through the system.
 
-**Related guides:**
-For detailed implementation guides, see:
-- [actions.md](../../laravel-actions/references/actions.md) - Action patterns
-- [dtos.md](../../laravel-dtos/references/dtos.md) - DTO patterns
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller patterns
-- [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation patterns
-- [testing.md](../../laravel-testing/references/testing.md) - Testing guide with triple-A pattern, mocking, and factories
-- [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Comprehensive validation testing
-- [models.md](../../laravel-models/references/models.md) - Model and custom builder patterns
+**See [patterns.md](patterns.md) for the conceptual data flow diagram.**
 
-## Base Data Class
+## 1. Form Request (Validation)
 
-`app/Data/Data.php`
+`app/Http/Web/Requests/CreateOrderRequest.php`
 ```php
 <?php
 
 declare(strict_types=1);
 
-namespace App\Data;
+namespace App\Http\Web\Requests;
 
-use App\Data\Concerns\HasTestFactory;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-abstract class Data extends \Spatie\LaravelData\Data
+class CreateOrderRequest extends FormRequest
 {
-    use HasTestFactory;
+    public function rules(): array
+    {
+        return [
+            'customer_email' => [
+                'required',
+                'string',
+                'email',
+            ],
+            'items' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+            'items.*.product_id' => [
+                'required',
+                'integer',
+                Rule::exists('products', 'id'),
+            ],
+        ];
+    }
 }
 ```
 
-## Sample DTO
+## 2. Transformer (Request → DTO)
+
+`app/Data/Transformers/Web/OrderDataTransformer.php`
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Data\Transformers\Web;
+
+use App\Data\CreateOrderData;
+use App\Data\OrderItemData;
+use App\Enums\OrderStatus;
+use App\Http\Web\Requests\CreateOrderRequest;
+
+class OrderDataTransformer
+{
+    public static function fromRequest(CreateOrderRequest $request): CreateOrderData
+    {
+        return CreateOrderData::from([
+            'customerEmail' => $request->input('customer_email'),
+            'notes' => $request->input('notes'),
+            'status' => OrderStatus::from($request->input('status')),
+            'items' => OrderItemData::collect($request->input('items')),
+        ]);
+    }
+}
+```
+
+## 3. DTO (Typed Data)
 
 `app/Data/CreateOrderData.php`
 ```php
@@ -51,13 +92,43 @@ class CreateOrderData extends Data
         public OrderStatus $status,
         /** @var Collection<int, OrderItemData> */
         public Collection $items,
-    ) {
-        $this->customerEmail = EmailFormatter::format($this->customerEmail);
+    ) {}
+}
+```
+
+## 4. Controller (Thin Orchestration)
+
+`app/Http/Web/Controllers/OrderController.php`
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Web\Controllers;
+
+use App\Actions\Order\CreateOrderAction;
+use App\Data\Transformers\Web\OrderDataTransformer;
+use App\Http\Controllers\Controller;
+use App\Http\Web\Requests\CreateOrderRequest;
+use App\Http\Web\Resources\OrderResource;
+
+class OrderController extends Controller
+{
+    public function store(
+        CreateOrderRequest $request,
+        CreateOrderAction $action
+    ): OrderResource {
+        $order = $action(
+            user(),
+            OrderDataTransformer::fromRequest($request)
+        );
+
+        return OrderResource::make($order);
     }
 }
 ```
 
-## Sample Action
+## 5. Action (Domain Logic)
 
 `app/Actions/Order/CreateOrderAction.php`
 ```php
@@ -96,130 +167,7 @@ class CreateOrderAction
 }
 ```
 
-## Sample Controller
-
-`app/Http/Web/Controllers/OrderController.php`
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Http\Web\Controllers;
-
-use App\Actions\Order\CreateOrderAction;
-use App\Data\Transformers\Web\OrderDataTransformer;
-use App\Http\Controllers\Controller;
-use App\Http\Web\Requests\CreateOrderRequest;
-use App\Http\Web\Resources\OrderResource;
-
-class OrderController extends Controller
-{
-    public function store(
-        CreateOrderRequest $request,
-        CreateOrderAction $action
-    ): OrderResource {
-        $order = $action(
-            user(),
-            OrderDataTransformer::fromRequest($request)
-        );
-
-        return OrderResource::make($order);
-    }
-}
-```
-
-## Sample Form Request
-
-`app/Http/Web/Requests/CreateOrderRequest.php`
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Http\Web\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-
-class CreateOrderRequest extends FormRequest
-{
-    public function rules(): array
-    {
-        return [
-            'customer_email' => [
-                'required',
-                'string',
-                'email',
-            ],
-            'items' => [
-                'required',
-                'array',
-                'min:1',
-            ],
-            'items.*.product_id' => [
-                'required',
-                'integer',
-                Rule::exists('products', 'id'),
-            ],
-        ];
-    }
-}
-```
-
-## Sample Transformer
-
-`app/Data/Transformers/Web/OrderDataTransformer.php`
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Data\Transformers\Web;
-
-use App\Data\CreateOrderData;
-use App\Http\Web\Requests\CreateOrderRequest;
-
-class OrderDataTransformer
-{
-    public static function fromRequest(CreateOrderRequest $request): CreateOrderData
-    {
-        return CreateOrderData::from([
-            'customerEmail' => $request->input('customer_email'),
-            'notes' => $request->input('notes'),
-            'status' => OrderStatus::from($request->input('status')),
-            'items' => OrderItemData::collect($request->input('items')),
-        ]);
-    }
-}
-```
-
-## Sample Custom Builder
-
-`app/Builders/OrderBuilder.php`
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\Builders;
-
-use Illuminate\Database\Eloquent\Builder;
-
-class OrderBuilder extends Builder
-{
-    public function pending(): self
-    {
-        return $this->where('status', OrderStatus::Pending);
-    }
-
-    public function forCustomer(User $customer): self
-    {
-        return $this->where('user_id', $customer->id);
-    }
-}
-```
-
-## Sample Test
+## 6. Test (Feature Test)
 
 `tests/Feature/Web/OrderControllerTest.php`
 ```php
@@ -231,7 +179,6 @@ use App\Data\CreateOrderData;
 use App\Models\User;
 
 use function Pest\Laravel\actingAs;
-use function Pest\Laravel\postJson;
 
 it('creates an order', function () {
     $user = User::factory()->create();
@@ -242,32 +189,4 @@ it('creates an order', function () {
         ->assertCreated()
         ->assertJsonStructure(['data' => ['id', 'status']]);
 });
-```
-
-## Bootstrap Configuration
-
-`bootstrap/app.php`
-```php
-<?php
-
-declare(strict_types=1);
-
-use App\Booters\ExceptionBooter;
-use App\Booters\MiddlewareBooter;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-
-return Application::configure(basePath: dirname(__DIR__))
-    ->withRouting(function () {
-        Route::middleware('api')
-            ->group(base_path('routes/web.php'));
-
-        Route::middleware(['api', 'throttle:api'])
-            ->prefix('api/v1')
-            ->name('api.v1.')
-            ->group(base_path('routes/api/v1.php'));
-    })
-    ->withMiddleware(new MiddlewareBooter)
-    ->withExceptions(new ExceptionBooter)
-    ->create();
 ```

@@ -23,12 +23,12 @@ final readonly class CreateOrderAction
 {
     public function __invoke(CreateOrderDto $dto): Order
     {
-        $this->guardInventoryAvailable($dto);
+        $this->guard($dto);
 
         // Domain logic here
     }
 
-    private function guardInventoryAvailable(CreateOrderDto $dto): void
+    private function guard(CreateOrderDto $dto): void
     {
         // Validation logic
     }

@@ -74,15 +74,10 @@ Uses Spatie Model States for dedicated state classes with transition logic.
 
 **Location:** `app/States/{Model}/`
 
-### Multi-Tenancy
-**When:** Multiple isolated tenant databases
-
-Separates actions into `Central/` and `Tenanted/` namespaces.
-
 ### Service Layer
 **When:** External API integrations
 
-Uses Saloon with connectors, requests, drivers pattern.
+Manager class with drivers and contracts pattern.
 
 **Location:** `app/Services/{ServiceName}/`
 
@@ -109,6 +104,7 @@ Orchestrates multiple actions into defined workflows.
 5. **Data Objects Over Primitives** - Always use DTOs
 6. **Explicit Over Implicit** - Clear, verbose naming
 7. **Testability** - Every layer independently testable
+8. **Declarative, Readable, Beautiful Code** - Code should be a pleasure to read
 
 ## Data Flow
 

@@ -72,7 +72,6 @@ Form Requests are the single source of truth for what data is valid. They encaps
 - All validation rules in Form Requests
 - Never validate in controllers
 - Never validate in actions
-- Form Requests transform to DTOs via `toDto()` method
 
 ### Thin Delegation Layers
 
