@@ -32,14 +32,20 @@ That's it. The [Claude Manager](https://github.com/leeovery/claude-manager) hand
 
 ## How It Works
 
-This package depends on [`leeovery/claude-manager`](https://github.com/leeovery/claude-manager), which:
+This package depends on [`leeovery/claude-manager`](https://github.com/leeovery/claude-manager), which automatically installs skills, commands, hooks, and agents into your project's `.claude/` directory.
 
-1. **Symlinks skills** into your project's `.claude/skills/` directory
-2. **Symlinks commands** into your project's `.claude/commands/` directory
-3. **Manages your `.gitignore`** with a deterministic list of linked skills and commands
-4. **Handles installation/removal** automatically via Composer hooks
+### Installation Modes
 
-You don't need to configure anything—just install and start coding.
+The manager supports two modes:
+
+| Mode | Description |
+|------|-------------|
+| **Symlink** (default) | Assets stay in vendor/ with symlinks to `.claude/`. Gitignore is managed automatically. |
+| **Copy** | Assets are copied to `.claude/` and become part of your repository. Ideal for Claude Code on the web where skills need to be available before `composer install` runs. |
+
+See the [Claude Manager README](https://github.com/leeovery/claude-manager#readme) for full details on switching modes and configuration options.
+
+You don't need to configure anything—just install and start coding with the default symlink mode.
 
 ## Skills
 
