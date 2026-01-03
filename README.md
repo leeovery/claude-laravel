@@ -36,16 +36,14 @@ This package depends on [`leeovery/claude-manager`](https://github.com/leeovery/
 
 ### Installation Modes
 
-The manager supports two modes:
+On first install, you'll be prompted to choose an installation mode. This choice applies to all plugins managed by Claude Manager:
 
 | Mode | Description |
 |------|-------------|
 | **Symlink** (default) | Assets stay in vendor/ with symlinks to `.claude/`. Gitignore is managed automatically. |
 | **Copy** | Assets are copied to `.claude/` and become part of your repository. Ideal for Claude Code on the web where skills need to be available before `composer install` runs. |
 
-See the [Claude Manager README](https://github.com/leeovery/claude-manager#readme) for full details on switching modes and configuration options.
-
-You don't need to configure anything—just install and start coding with the default symlink mode.
+See the [Claude Manager README](https://github.com/leeovery/claude-manager#readme) for full details on switching modes and CLI commands.
 
 ## Skills
 
