@@ -5,8 +5,8 @@ Actions are the **heart of your domain logic**. Every business operation lives i
 **Related guides:**
 - [DTOs](../../laravel-dtos/SKILL.md) - DTOs for passing data to actions
 - [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Factory-created DTOs consumed by actions
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers delegate to actions
-- [models.md](../../laravel-models/references/models.md) - Models accessed by actions
+- [Controllers](../../laravel-controllers/SKILL.md) - Controllers delegate to actions
+- [Models](../../laravel-models/SKILL.md) - Models accessed by actions
 - [testing.md](../../laravel-testing/references/testing.md) - Comprehensive testing guide following triple-A pattern, mocking only what you own
 - [testing-conventions.md](../../laravel-testing/references/testing-conventions.md) - Test structure and ordering
 - [multi-tenancy.md](../../laravel-multi-tenancy/references/multi-tenancy.md) - Central vs Tenanted action organization

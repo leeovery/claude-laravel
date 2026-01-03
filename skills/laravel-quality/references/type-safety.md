@@ -5,7 +5,7 @@ Every file uses strict types and comprehensive type declarations.
 **Related guides:**
 - [DTOs](../../laravel-dtos/SKILL.md) - Typed DTOs with property promotion
 - [actions.md](../../laravel-actions/references/actions.md) - Typed action parameters and returns
-- [models.md](../../laravel-models/references/models.md) - Model casts and property types
+- [Models](../../laravel-models/SKILL.md) - Model casts and property types
 
 ## Mandatory Strict Types Declaration
 

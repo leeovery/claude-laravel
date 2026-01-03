@@ -4,7 +4,7 @@ Multi-tenancy separates application logic into **central** (non-tenant) and **te
 
 **Related guides:**
 - [actions.md](../../laravel-actions/references/actions.md) - Central vs Tenanted action organization
-- [models.md](../../laravel-models/references/models.md) - Central vs Tenanted model organization
+- [Models](../../laravel-models/SKILL.md) - Central vs Tenanted model organization
 - [structure.md](../../laravel-architecture/references/structure.md) - Directory organization for multi-tenancy
 - [route-binding.md](../../laravel-routing/references/route-binding.md) - Tenant-scoped route model binding
 
@@ -842,6 +842,6 @@ if (TenantContext::isActive()) {
 
 **See also:**
 - [actions.md](../../laravel-actions/references/actions.md) - Action organization patterns
-- [models.md](../../laravel-models/references/models.md) - Model organization
+- [Models](../../laravel-models/SKILL.md) - Model organization
 - [structure.md](../../laravel-architecture/references/structure.md) - Project structure
 - [route-binding.md](../../laravel-routing/references/route-binding.md) - Route model binding with tenant scoping

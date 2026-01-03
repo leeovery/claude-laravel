@@ -529,5 +529,5 @@ private function configure(): void { }
 - Be overly complex (split into multiple providers if needed)
 
 **See also:**
-- [models.md](../../laravel-models/references/models.md) - Model unguard pattern
+- [Models](../../laravel-models/SKILL.md) - Model unguard pattern
 - [DTOs](../../laravel-dtos/SKILL.md) - Data factory setup

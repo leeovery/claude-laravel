@@ -48,7 +48,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 - Resources format responses
 - Queries handle complex filtering/sorting
 
-**Controllers:** HTTP only - See [controllers.md](../../laravel-controllers/references/controllers.md)
+**Controllers:** HTTP only - See [Controllers](../../laravel-controllers/SKILL.md)
 **Jobs/Listeners:** Delegate to actions
 **Actions:** Domain logic - See [actions.md](../../laravel-actions/references/actions.md)
 **Validation:** Form Requests - See [form-requests.md](../../laravel-validation/references/form-requests.md)
@@ -63,7 +63,7 @@ Overview of all architectural patterns used in the Laravel architecture.
 
 **Naming:** `{Entity}Builder`
 
-**See [models.md](../../laravel-models/references/models.md) for custom builder implementation**
+**See [Models](../../laravel-models/SKILL.md) for custom builder implementation**
 
 ## Optional Patterns
 

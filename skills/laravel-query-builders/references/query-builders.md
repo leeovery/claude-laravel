@@ -3,8 +3,8 @@
 **Always use custom query builders** instead of local scopes.
 
 **Related guides:**
-- [models.md](../../laravel-models/references/models.md) - Model integration with custom builders
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Using query objects in controllers
+- [Models](../../laravel-models/SKILL.md) - Model integration with custom builders
+- [Controllers](../../laravel-controllers/SKILL.md) - Using query objects in controllers
 
 ## Why Custom Builders Over Scopes
 

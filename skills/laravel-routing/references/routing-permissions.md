@@ -3,7 +3,7 @@
 Routes define the HTTP interface. Authorization happens at the route level using `->can()`.
 
 **Related guides:**
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controllers handle routes
+- [Controllers](../../laravel-controllers/SKILL.md) - Controllers handle routes
 - [policies.md](../../laravel-policies/references/policies.md) - Policies define authorization logic
 - [structure.md](../../laravel-architecture/references/structure.md) - Web vs API routing structure
 - [bootstrap-booters.md](../../laravel-providers/references/bootstrap-booters.md) - Route configuration in bootstrap

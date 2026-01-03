@@ -6,11 +6,11 @@ Quick reference examples showing the core patterns in action.
 For detailed implementation guides, see:
 - [actions.md](../../laravel-actions/references/actions.md) - Action patterns
 - [DTOs](../../laravel-dtos/SKILL.md) - DTO patterns
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller patterns
+- [Controllers](../../laravel-controllers/SKILL.md) - Controller patterns
 - [form-requests.md](../../laravel-validation/references/form-requests.md) - Validation patterns
 - [testing.md](../../laravel-testing/references/testing.md) - Testing guide with triple-A pattern, mocking, and factories
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Comprehensive validation testing
-- [models.md](../../laravel-models/references/models.md) - Model and custom builder patterns
+- [Models](../../laravel-models/SKILL.md) - Model and custom builder patterns
 
 ## Base Data Class
 

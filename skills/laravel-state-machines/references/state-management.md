@@ -3,7 +3,7 @@
 Use **Spatie Model States** for complex state management with type-safe transitions.
 
 **Related guides:**
-- [models.md](../../laravel-models/references/models.md) - Model integration
+- [Models](../../laravel-models/SKILL.md) - Model integration
 - [enums.md](../../laravel-enums/references/enums.md) - Simple state without transitions use enums
 - [packages.md](../../laravel-packages/references/packages.md) - Installing Spatie Model States
 

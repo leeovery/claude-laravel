@@ -6,7 +6,7 @@ Step-by-step implementation checklist for new projects.
 - [structure.md](structure.md) - Directory structure to create
 - [packages.md](../../laravel-packages/references/packages.md) - Packages to install
 - [quality.md](../../laravel-quality/references/quality.md) - Quality tools to configure
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller naming and patterns
+- [Controllers](../../laravel-controllers/SKILL.md) - Controller naming and patterns
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Validation testing with datasets
 - [examples.md](examples.md) - Reference implementations
 

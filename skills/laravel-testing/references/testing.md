@@ -6,7 +6,7 @@ Comprehensive guide to testing Laravel applications following the action-oriente
 - [testing-conventions.md](testing-conventions.md) - Test file structure and RESTful ordering
 - [validation-testing.md](../../laravel-validation/references/validation-testing.md) - Form request validation testing with datasets
 - [actions.md](../../laravel-actions/references/actions.md) - Action pattern and structure
-- [controllers.md](../../laravel-controllers/references/controllers.md) - Controller patterns for feature testing HTTP layer
+- [Controllers](../../laravel-controllers/SKILL.md) - Controller patterns for feature testing HTTP layer
 - [dto-factories.md](../../laravel-dtos/references/dto-factories.md) - Testing factory transformation logic
 - [services.md](../../laravel-services/references/services.md) - Service layer with null drivers for testing
 - [quality.md](../../laravel-quality/references/quality.md) - Architecture tests and quality enforcement
