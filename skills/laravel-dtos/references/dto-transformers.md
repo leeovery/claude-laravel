@@ -93,16 +93,45 @@ class PaymentDataTransformer
 },
 ```
 
-### Nested DTOs
+### Nested DTO Collections
 
+Three approaches for mapping collections, from simplest to most control:
+
+**1. Direct pass-through** - when keys match exactly:
 ```php
-'addresses' => collect_get($match, 'addresses')
-    ->map(fn ($address) => AddressData::from([
-        'line1' => data_get($address, 'line_1'),
-        'city' => data_get($address, 'town'),
-        'postcode' => data_get($address, 'postcode'),
-    ])),
+'images' => $request->input('images'),
 ```
+
+**2. Map from array** - when keys differ, let package cast:
+```php
+'images' => collect($request->input('images'))
+    ->map(fn (array $image) => [
+        'url' => $image['image_url'],
+        'size' => $image['file_size'],
+        'caption' => $image['alt_text'],
+    ]),
+```
+
+**3. Map using request with index** - for request helpers or explicit construction:
+```php
+// Let package cast
+'images' => collect($request->input('images'))
+    ->map(fn (array $image, int $index) => [
+        'url' => $request->input("images.{$index}.image_url"),
+        'size' => $request->integer("images.{$index}.file_size"),
+        'isPublic' => $request->boolean("images.{$index}.is_public"),
+    ]),
+
+// Or construct child DTO directly for explicit control
+'images' => collect($request->input('images'))
+    ->map(fn (array $image, int $index) => new PostImageData(
+        url: $request->input("images.{$index}.image_url"),
+        size: $request->integer("images.{$index}.file_size"),
+        isPublic: $request->boolean("images.{$index}.is_public"),
+    )),
+```
+
+Use request with index when you need `boolean()`, `integer()`, `date()` helpers. Use `new Data()` when you want explicit control over child DTO construction.
 
 **First-class callable for reusable transformers:**
 
