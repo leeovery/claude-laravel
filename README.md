@@ -14,6 +14,10 @@
 
 ---
 
+> **Version 1.x is deprecated.** This version uses Composer/PHP.
+>
+> **Version 2.x plugins use npm.** Update to the v2 version: `npm install @leeovery/claude-laravel`
+
 ## About
 
 This is a curated collection of Laravel development patterns and practices I've refined over **20 years in the industry** and **10+ years working with Laravel**.
