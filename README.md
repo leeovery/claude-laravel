@@ -14,6 +14,13 @@
 
 ---
 
+## Versions
+
+| Version | Package Manager | Status | Branch |
+|---------|----------------|--------|--------|
+| 2.x | npm | **Active** | `main` |
+| 1.x | Composer | Deprecated | [`v1`](https://github.com/leeovery/claude-laravel/tree/v1) |
+
 ## About
 
 This is a curated collection of Laravel development patterns and practices I've refined over **20 years in the industry** and **10+ years working with Laravel**.
@@ -25,25 +32,22 @@ This is a curated collection of Laravel development patterns and practices I've 
 ## Installation
 
 ```bash
-composer require --dev leeovery/claude-laravel
+npm install @leeovery/claude-laravel
 ```
 
 That's it. The [Claude Manager](https://github.com/leeovery/claude-manager) handles everything else automatically.
 
 ## How It Works
 
-This package depends on [`leeovery/claude-manager`](https://github.com/leeovery/claude-manager), which automatically installs skills, commands, hooks, and agents into your project's `.claude/` directory.
+This package depends on [`@leeovery/claude-manager`](https://github.com/leeovery/claude-manager), which:
 
-### Installation Modes
+1. **Copies skills** into your project's `.claude/skills/` directory
+2. **Copies commands** into your project's `.claude/commands/` directory
+3. **Copies agents** into your project's `.claude/agents/` directory
+4. **Tracks installed plugins** via a manifest file
+5. **Handles installation/removal** automatically via npm hooks
 
-On first install, you'll be prompted to choose an installation mode. This choice applies to all plugins managed by Claude Manager:
-
-| Mode | Description |
-|------|-------------|
-| **Symlink** (default) | Assets stay in vendor/ with symlinks to `.claude/`. Gitignore is managed automatically. |
-| **Copy** | Assets are copied to `.claude/` and become part of your repository. Ideal for Claude Code on the web where skills need to be available before `composer install` runs. |
-
-See the [Claude Manager README](https://github.com/leeovery/claude-manager#readme) for full details on switching modes and CLI commands.
+You don't need to configure anything—just install and start building.
 
 ## Skills
 
@@ -112,8 +116,8 @@ Slash commands for common Laravel development tasks.
 
 ## Requirements
 
-- PHP ^8.2
-- [leeovery/claude-manager](https://github.com/leeovery/claude-manager) ^1.0 (installed automatically)
+- Node.js 18+
+- [@leeovery/claude-manager](https://github.com/leeovery/claude-manager) ^2.0.0 (installed automatically)
 
 ## Contributing
 
@@ -128,9 +132,9 @@ Please open an issue first to discuss significant changes. These are opinionated
 
 ## Related Packages
 
-- [**claude-manager**](https://github.com/leeovery/claude-manager) — The plugin manager that powers skill installation
-- [**claude-nuxt**](https://github.com/leeovery/claude-nuxt) — Nuxt.js development skills for Claude Code
-- [**claude-technical-workflows**](https://github.com/leeovery/claude-technical-workflows) — Technical workflow skills for Claude Code
+- [**@leeovery/claude-manager**](https://github.com/leeovery/claude-manager) — The plugin manager that powers skill installation
+- [**@leeovery/claude-nuxt**](https://github.com/leeovery/claude-nuxt) — Nuxt.js development skills for Claude Code
+- [**@leeovery/claude-technical-workflows**](https://github.com/leeovery/claude-technical-workflows) — Technical workflow skills for Claude Code
 
 ## License
 
