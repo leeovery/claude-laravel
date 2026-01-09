@@ -39,11 +39,15 @@ npm install -D @leeovery/claude-laravel
 
 ### pnpm
 
+pnpm doesn't expose binaries from transitive dependencies, so install the manager directly:
+
 ```bash
-pnpm add -D --allow-build=@leeovery/claude-laravel @leeovery/claude-laravel
+pnpm add -D @leeovery/claude-manager @leeovery/claude-laravel
+pnpm approve-builds  # approve when prompted
+pnpm install         # triggers postinstall
 ```
 
-### Removal (pnpm only)
+**Removal (pnpm):**
 
 ```bash
 npx claude-plugins remove @leeovery/claude-laravel && pnpm remove @leeovery/claude-laravel
