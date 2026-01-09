@@ -16,10 +16,10 @@
 
 ## Versions
 
-| Version | Package Manager | Status | Branch |
-|---------|----------------|--------|--------|
-| 2.x | npm | **Active** | `main` |
-| 1.x | Composer | Deprecated | [`v1`](https://github.com/leeovery/claude-laravel/tree/v1) |
+| Version | Package Manager | Status     | Branch                                                     |
+|---------|-----------------|------------|------------------------------------------------------------|
+| 2.x     | npm             | **Active** | `main`                                                     |
+| 1.x     | Composer        | Deprecated | [`v1`](https://github.com/leeovery/claude-laravel/tree/v1) |
 
 ## About
 
@@ -31,16 +31,16 @@ This is a curated collection of Laravel development patterns and practices I've 
 
 ## Installation
 
-### npm / yarn
+### npm
 
 ```bash
-npm install @leeovery/claude-laravel
+npm install -D @leeovery/claude-laravel
 ```
 
 ### pnpm
 
 ```bash
-pnpm add --allow-build=@leeovery/claude-laravel @leeovery/claude-laravel
+pnpm add -D --allow-build=@leeovery/claude-laravel @leeovery/claude-laravel
 ```
 
 ### Removal (pnpm only)
