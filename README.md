@@ -47,10 +47,12 @@ pnpm approve-builds  # approve when prompted
 pnpm install         # triggers postinstall
 ```
 
-**Removal (pnpm):**
+### Removal
+
+Due to bugs in npm 7+ ([issue #3042](https://github.com/npm/cli/issues/3042)) and pnpm ([issue #3276](https://github.com/pnpm/pnpm/issues/3276)), preuninstall hooks don't run reliably. Remove files manually first:
 
 ```bash
-npx --yes @leeovery/claude-manager claude-manager remove @leeovery/claude-laravel && pnpm remove @leeovery/claude-laravel
+npx claude-manager remove @leeovery/claude-laravel && npm rm @leeovery/claude-laravel
 ```
 
 The [Claude Manager](https://github.com/leeovery/claude-manager) copies skills to `.claude/` automatically.
@@ -63,7 +65,6 @@ This package depends on [`@leeovery/claude-manager`](https://github.com/leeovery
 2. **Copies commands** into your project's `.claude/commands/` directory
 3. **Copies agents** into your project's `.claude/agents/` directory
 4. **Tracks installed plugins** via a manifest file
-5. **Handles installation/removal** automatically via npm hooks
 
 You don't need to configure anything—just install and start building.
 
