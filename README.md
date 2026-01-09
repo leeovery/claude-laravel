@@ -31,11 +31,25 @@ This is a curated collection of Laravel development patterns and practices I've 
 
 ## Installation
 
+### npm / yarn
+
 ```bash
 npm install @leeovery/claude-laravel
 ```
 
-That's it. The [Claude Manager](https://github.com/leeovery/claude-manager) handles everything else automatically.
+### pnpm
+
+```bash
+pnpm add --allow-build=@leeovery/claude-laravel @leeovery/claude-laravel
+```
+
+### Removal (pnpm only)
+
+```bash
+npx claude-plugins remove @leeovery/claude-laravel && pnpm remove @leeovery/claude-laravel
+```
+
+The [Claude Manager](https://github.com/leeovery/claude-manager) copies skills to `.claude/` automatically.
 
 ## How It Works
 
