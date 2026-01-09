@@ -50,7 +50,7 @@ pnpm install         # triggers postinstall
 **Removal (pnpm):**
 
 ```bash
-npx claude-plugins remove @leeovery/claude-laravel && pnpm remove @leeovery/claude-laravel
+npx claude-manager remove @leeovery/claude-laravel && pnpm remove @leeovery/claude-laravel
 ```
 
 The [Claude Manager](https://github.com/leeovery/claude-manager) copies skills to `.claude/` automatically.
