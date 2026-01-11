@@ -29,6 +29,8 @@ This is a curated collection of Laravel development patterns and practices I've 
 
 **This is a work in progress.** As I use these skills in real projects, I'm continuously refining them to better represent how I actually work. Expect updates as patterns evolve and edge cases reveal themselves.
 
+**Model compatibility:** These skills have been developed and refined for Claude Code running on **Opus 4.5**. Different models may exhibit different edge cases, and future model releases may require adjustments to the prompts and workflows.
+
 ## Installation
 
 ### npm
