@@ -5,13 +5,23 @@
 </p>
 
 <p align="center">
-  <a href="#about">About</a> •
+  <a href="#what-is-this">What is this?</a> •
   <a href="#skills">Skills</a> •
   <a href="#installation">Installation</a> •
   <a href="#contributing">Contributing</a>
 </p>
 
 ---
+
+## What is this?
+
+A curated collection of Laravel development patterns and practices I've refined over **20 years in the industry** and **10+ years working with Laravel**.
+
+**These are opinionated.** They represent how I build Laravel applications—action-oriented architecture, strict typing, DTOs everywhere, and a relentless focus on maintainability. They won't be for everyone, and that's okay.
+
+**This is a work in progress.** As I use these skills in real projects, I'm continuously refining them to better represent how I actually work. Expect updates as patterns evolve and edge cases reveal themselves.
+
+**Model compatibility:** These skills have been developed and refined for Claude Code running on **Opus 4.5**. Different models may exhibit different edge cases, and future model releases may require adjustments to the prompts and workflows.
 
 ### Quick Install
 
@@ -27,18 +37,6 @@ npm install -D @leeovery/claude-laravel
 ```
 
 See [Installation](#installation) for details and trade-offs.
-
----
-
-## About
-
-This is a curated collection of Laravel development patterns and practices I've refined over **20 years in the industry** and **10+ years working with Laravel**.
-
-**These are opinionated.** They represent how I build Laravel applications—action-oriented architecture, strict typing, DTOs everywhere, and a relentless focus on maintainability. They won't be for everyone, and that's okay.
-
-**This is a work in progress.** As I use these skills in real projects, I'm continuously refining them to better represent how I actually work. Expect updates as patterns evolve and edge cases reveal themselves.
-
-**Model compatibility:** These skills have been developed and refined for Claude Code running on **Opus 4.5**. Different models may exhibit different edge cases, and future model releases may require adjustments to the prompts and workflows.
 
 ## Installation
 
