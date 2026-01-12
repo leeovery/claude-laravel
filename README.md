@@ -5,21 +5,30 @@
 </p>
 
 <p align="center">
-  <a href="#installation">Installation</a> •
+  <a href="#about">About</a> •
   <a href="#skills">Skills</a> •
-  <a href="#commands">Commands</a> •
-  <a href="#how-it-works">How It Works</a> •
+  <a href="#installation">Installation</a> •
   <a href="#contributing">Contributing</a>
 </p>
 
 ---
 
-## Versions
+### Quick Install
 
-| Version | Package Manager | Status     | Branch                                                     |
-|---------|-----------------|------------|------------------------------------------------------------|
-| 2.x     | npm             | **Active** | `main`                                                     |
-| 1.x     | Composer        | Deprecated | [`v1`](https://github.com/leeovery/claude-laravel/tree/v1) |
+**Marketplace** (cached globally):
+```
+/plugin marketplace add leeovery/claude-plugins-marketplace
+/plugin install claude-laravel@claude-plugins-marketplace
+```
+
+**npm** (copied to your repo):
+```bash
+npm install -D @leeovery/claude-laravel
+```
+
+See [Installation](#installation) for details and trade-offs.
+
+---
 
 ## About
 
@@ -33,12 +42,10 @@ This is a curated collection of Laravel development patterns and practices I've 
 
 ## Installation
 
-Two installation methods are available:
-
-| Method | Best for | Trade-off |
-|--------|----------|-----------|
-| **Marketplace** | Local Claude Code | Simple install, skills cached globally |
-| **npm** | Claude Code for Web | Skills copied to repo, requires npm |
+| Method | Where files live | Best for |
+|--------|------------------|----------|
+| **Marketplace** | `~/.claude/plugins/` (global cache) | Quick setup, don't need files in repo |
+| **npm** | `.claude/` in your project | Ownership, version control, Claude Code for Web |
 
 ### Option 1: Claude Marketplace
 
@@ -47,15 +54,15 @@ Two installation methods are available:
 /plugin install claude-laravel@claude-plugins-marketplace
 ```
 
-> **Note:** Marketplace plugins are cached globally (`~/.claude/plugins/`) and won't be available in Claude Code for Web since files aren't in your repository.
+Skills are cached globally. They won't be available in Claude Code for Web since files aren't in your repository.
 
-### Option 2: npm (Recommended for Web)
+### Option 2: npm
 
 ```bash
 npm install -D @leeovery/claude-laravel
 ```
 
-Skills are copied to `.claude/` in your project and can be committed to your repository—making them available in Claude Code for Web.
+Skills are copied to `.claude/` and can be committed—giving you ownership and making them available everywhere including Claude Code for Web.
 
 <details>
 <summary>pnpm users</summary>
