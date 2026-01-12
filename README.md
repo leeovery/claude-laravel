@@ -33,13 +33,32 @@ This is a curated collection of Laravel development patterns and practices I've 
 
 ## Installation
 
-### npm
+Two installation methods are available:
+
+| Method | Best for | Trade-off |
+|--------|----------|-----------|
+| **Marketplace** | Local Claude Code | Simple install, skills cached globally |
+| **npm** | Claude Code for Web | Skills copied to repo, requires npm |
+
+### Option 1: Claude Marketplace
+
+```
+/plugin marketplace add leeovery/claude-plugins-marketplace
+/plugin install claude-laravel@claude-plugins-marketplace
+```
+
+> **Note:** Marketplace plugins are cached globally (`~/.claude/plugins/`) and won't be available in Claude Code for Web since files aren't in your repository.
+
+### Option 2: npm (Recommended for Web)
 
 ```bash
 npm install -D @leeovery/claude-laravel
 ```
 
-### pnpm
+Skills are copied to `.claude/` in your project and can be committed to your repository—making them available in Claude Code for Web.
+
+<details>
+<summary>pnpm users</summary>
 
 pnpm doesn't expose binaries from transitive dependencies, so install the manager directly:
 
@@ -48,16 +67,17 @@ pnpm add -D @leeovery/claude-manager @leeovery/claude-laravel
 pnpm approve-builds  # approve when prompted
 pnpm install         # triggers postinstall
 ```
+</details>
 
-### Removal
+<details>
+<summary>Removal (npm/pnpm)</summary>
 
 Due to bugs in npm 7+ ([issue #3042](https://github.com/npm/cli/issues/3042)) and pnpm ([issue #3276](https://github.com/pnpm/pnpm/issues/3276)), preuninstall hooks don't run reliably. Remove files manually first:
 
 ```bash
 npx claude-manager remove @leeovery/claude-laravel && npm rm @leeovery/claude-laravel
 ```
-
-The [Claude Manager](https://github.com/leeovery/claude-manager) copies skills to `.claude/` automatically.
+</details>
 
 ## How It Works
 
